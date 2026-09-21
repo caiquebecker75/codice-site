@@ -272,12 +272,14 @@ export function Rodape({
   caminhoIdioma,
   linkPrivacidade,
   inicio = "#topo",
+  ancora = "",
 }: {
   c: Conteudo;
   idioma: Idioma;
   caminhoIdioma: (destino: Idioma) => string;
   linkPrivacidade: string;
   inicio?: string;
+  ancora?: string;
 }) {
   const ano = new Date().getFullYear();
   return (
@@ -296,7 +298,7 @@ export function Rodape({
           <ul className="grid gap-2.5 text-[15px]">
             {c.nav.links.map((link) => (
               <li key={link.id}>
-                <a className="transition-colors hover:text-teal" href={`#${link.id}`}>
+                <a className="transition-colors hover:text-teal" href={`${ancora}#${link.id}`}>
                   {link.rotulo}
                 </a>
               </li>

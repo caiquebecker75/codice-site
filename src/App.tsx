@@ -33,7 +33,7 @@ export function App({ idioma, pagina }: Props) {
     return (
       <>
         <Cursor />
-        <Cabecalho c={c} idioma={idioma} caminhoIdioma={paraIdioma} inicio={inicio} />
+        <Cabecalho c={c} idioma={idioma} caminhoIdioma={paraIdioma} inicio={inicio} solido ancora={endereco(idioma, "home")} />
         <main id="conteudo" className="bg-papel pt-[132px]">
           <div className="env secao !pt-4">
             <p className="chapeu">{c.rodape.legal}</p>
@@ -54,7 +54,7 @@ export function App({ idioma, pagina }: Props) {
             </a>
           </div>
         </main>
-        <Rodape c={c} idioma={idioma} caminhoIdioma={paraIdioma} linkPrivacidade={endereco(idioma, "privacidade")} inicio={inicio} />
+        <Rodape c={c} idioma={idioma} caminhoIdioma={paraIdioma} linkPrivacidade={endereco(idioma, "privacidade")} inicio={inicio} ancora={endereco(idioma, "home")} />
       </>
     );
   }

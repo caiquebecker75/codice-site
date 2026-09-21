@@ -15,12 +15,18 @@ export function Cabecalho({
   idioma,
   caminhoIdioma,
   inicio = "#topo",
+  solido = false,
+  ancora = "",
 }: {
   c: Conteudo;
   idioma: Idioma;
   /** devolve o endereço da mesma página em outro idioma */
   caminhoIdioma: (destino: Idioma) => string;
   inicio?: string;
+  /** páginas de fundo claro precisam da barra sempre preenchida */
+  solido?: boolean;
+  /** prefixo das âncoras: vazio na home, endereço da home nas outras páginas */
+  ancora?: string;
 }) {
   const [aberto, setAberto] = useState(false);
   const [rolou, setRolou] = useState(false);
@@ -69,7 +75,7 @@ export function Cabecalho({
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-        rolou || aberto ? "bg-navy/92 backdrop-blur-xl" : "bg-transparent"
+        solido || rolou || aberto ? "bg-navy/92 backdrop-blur-xl" : "bg-transparent"
       }`}
     >
       <div className="env flex h-[72px] items-center gap-6">
@@ -77,11 +83,11 @@ export function Cabecalho({
           <Logotipo />
         </a>
 
-        <nav aria-label={c.nav.links.length ? "Principal" : undefined} className="ml-auto hidden items-center gap-7 lg:flex">
+        <nav aria-label="Principal" className={`ml-auto hidden items-center gap-7 ${solido ? "" : "lg:flex"}`}>
           {c.nav.links.map((link) => (
             <a
               key={link.id}
-              href={`#${link.id}`}
+              href={`${ancora}#${link.id}`}
               className={`relative py-2 text-[14.5px] font-medium transition-colors ${
                 ativa === link.id ? "text-teal" : "text-white/70 hover:text-white"
               }`}
@@ -100,7 +106,7 @@ export function Cabecalho({
 
         <div className="ml-auto flex items-center gap-3 lg:ml-0">
           <TrocaIdioma idioma={idioma} caminhoIdioma={caminhoIdioma} rotulo={c.nav.idioma} />
-          <a href="#falar" className="botao botao-teal hidden !px-5 !py-3 text-[14.5px] sm:inline-flex">
+          <a href={`${ancora}#falar`} className="botao botao-teal hidden !px-5 !py-3 text-[14.5px] sm:inline-flex">
             {c.nav.cta}
           </a>
           <button
@@ -129,7 +135,7 @@ export function Cabecalho({
             {c.nav.links.map((link, i) => (
               <a
                 key={link.id}
-                href={`#${link.id}`}
+                href={`${ancora}#${link.id}`}
                 onClick={() => setAberto(false)}
                 className="flex items-baseline gap-4 border-b border-white/8 py-4 text-[20px] font-semibold text-white"
               >
@@ -137,7 +143,7 @@ export function Cabecalho({
                 {link.rotulo}
               </a>
             ))}
-            <a href="#falar" onClick={() => setAberto(false)} className="botao botao-teal mt-6 w-full">
+            <a href={`${ancora}#falar`} onClick={() => setAberto(false)} className="botao botao-teal mt-6 w-full">
               {c.nav.cta}
             </a>
           </div>
