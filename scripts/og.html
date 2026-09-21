@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<style>
+  @font-face { font-family: 'Exo 2'; src: url('../public/fontes/exo2-latin.woff2') format('woff2'); font-weight: 600 800; }
+  @font-face { font-family: 'Inter'; src: url('../public/fontes/inter-latin.woff2') format('woff2'); font-weight: 400 700; }
+  * { margin: 0; box-sizing: border-box; }
+  body {
+    width: 1200px; height: 630px; overflow: hidden; position: relative;
+    background: #061B49; color: #fff; font-family: Inter, sans-serif;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 64px 72px;
+  }
+  .luz { position: absolute; inset: -30% -10% auto -20%; height: 150%;
+    background: radial-gradient(52% 50% at 18% 16%, rgba(47,115,255,.46), transparent 70%),
+                radial-gradient(40% 40% at 92% 6%, rgba(29,212,200,.26), transparent 68%); }
+  .hex { position: absolute; right: -90px; top: 40px; width: 560px; height: 560px; color: rgba(255,255,255,.10); }
+  .topo { position: relative; display: flex; align-items: center; gap: 16px; }
+  .topo b { font-family: 'Exo 2'; font-size: 40px; font-weight: 800; letter-spacing: -.02em; }
+  h1 { position: relative; font-family: 'Exo 2'; font-size: 104px; font-weight: 800; line-height: .96; letter-spacing: -.03em; max-width: 15ch; }
+  h1 em { font-style: normal; color: #1DD4C8; }
+  p { position: relative; margin-top: 26px; font-size: 25px; line-height: 1.45; color: rgba(255,255,255,.72); max-width: 44ch; }
+  .rodape { position: relative; display: flex; align-items: center; gap: 28px; font-size: 19px; color: rgba(255,255,255,.55); }
+  .rodape span { display: inline-flex; align-items: center; gap: 10px; }
+  .ponto { width: 9px; height: 9px; border-radius: 99px; background: #1DD4C8; display: block; }
+</style></head>
+<body>
+  <div class="luz"></div>
+  <svg class="hex" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.4">
+    <path d="M100 8l79.7 46v92L100 192 20.3 146V54z"/>
+    <path d="M100 38l53.5 30.9v61.8L100 161.6 46.5 130.7V68.9z" opacity=".7"/>
+    <path d="M100 68l27.6 15.9v31.8L100 131.6 72.4 115.7V83.9z" opacity=".45"/>
+    <path d="M100 8v184M20.3 54l159.4 92M179.7 54L20.3 146" opacity=".3"/>
+  </svg>
+
+  <div class="topo">
+    <svg width="52" height="52" viewBox="0 0 64 64">
+      <defs>
+        <linearGradient id="f" x1="0" y1="0" x2="1" y2=".3"><stop offset="0" stop-color="#2F73FF"/><stop offset="1" stop-color="#1DD4C8"/></linearGradient>
+        <linearGradient id="l" x1="0" y1="0" x2=".6" y2="1"><stop offset="0" stop-color="#1DD4C8"/><stop offset="1" stop-color="#2F73FF"/></linearGradient>
+      </defs>
+      <g stroke-linejoin="round" stroke-width="2">
+        <path d="M11 15.5 34 4l19 9.5L30 25z" fill="url(#f)" stroke="url(#f)"/>
+        <path d="M9 19l16 8v10l-16 8z" fill="url(#l)" stroke="url(#l)"/>
+        <path d="M11 48.5 30 39l23 11.5L34 60z" fill="url(#f)" stroke="url(#f)"/>
+        <rect x="32" y="27" width="5" height="10" rx="2.5" fill="#2F73FF"/>
+        <rect x="40" y="23" width="5.5" height="18" rx="2.75" fill="url(#l)"/>
+        <rect x="48.5" y="19" width="6" height="26" rx="3" fill="url(#l)"/>
+      </g>
+    </svg>
+    <b>Códice</b>
+  </div>
+
+  <div>
+    <h1>Do espaço<br>ao <em>insight</em></h1>
+    <p>A plataforma que controla o display na loja e a semana de exposição que a indústria compra.</p>
+  </div>
+
+  <div class="rodape">
+    <span><i class="ponto"></i>Mídia de varejo</span>
+    <span><i class="ponto"></i>Frota e sensores</span>
+    <span><i class="ponto"></i>Execução no PDV</span>
+  </div>
+</body></html>

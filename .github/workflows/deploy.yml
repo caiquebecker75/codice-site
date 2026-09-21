@@ -1,0 +1,52 @@
+name: Build e publicar
+
+# O fonte fica na main. A Hostinger acompanha a branch deploy, que só
+# contém o resultado do build: ela faz git pull e serve os arquivos.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publicar
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar
+        run: npm ci
+
+      - name: Conferir tipos
+        run: npx tsc -b
+
+      - name: Conferir que não há travessão no conteúdo
+        run: |
+          if grep -rn "—\|–" src/conteudo/ ; then
+            echo "Travessão encontrado no conteúdo. Trocar por vírgula, dois pontos ou ·"
+            exit 1
+          fi
+
+      - name: Build
+        run: npm run build
+
+      - name: Publicar na branch deploy
+        run: |
+          cd dist
+          git init -q
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add -A
+          git commit -qm "Build de ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:deploy
