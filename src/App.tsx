@@ -1,10 +1,12 @@
 import { Cabecalho } from "./componentes/Cabecalho";
 import { Cursor } from "./componentes/Cursor";
 import { Abertura, Heroi } from "./secoes/Topo";
-import { Desafio, Manifesto, Solucao } from "./secoes/Narrativa";
-import { Pdv, Sensores, Sistema } from "./secoes/Produto";
-import { Honestidade, Metodo, Numeros, Perfis } from "./secoes/Prova";
-import { Conversao, Faq, Rodape } from "./secoes/Fim";
+import { ComoFunciona, Mudou } from "./secoes/Mercado";
+import { Plataforma } from "./secoes/Plataforma";
+import { Displays, Pacotes, Tecnologia } from "./secoes/Produto";
+import { Contas, Industria } from "./secoes/Contas";
+import { Simulador } from "./secoes/Simulador";
+import { Conversao, Faq, Grupo, Honestidade, Rodape } from "./secoes/Fim";
 import { Hexagono } from "./componentes/Marca";
 import { CONTEUDOS } from "./conteudo";
 import type { Idioma } from "./conteudo/config";
@@ -88,16 +90,17 @@ export function App({ idioma, pagina }: Props) {
       <Cabecalho c={c} idioma={idioma} caminhoIdioma={paraIdioma} />
       <main id="conteudo">
         <Heroi c={c} />
-        <Manifesto c={c} />
-        <Desafio c={c} />
-        <Solucao c={c} />
-        <Sistema c={c} />
-        <Sensores c={c} />
-        <Pdv c={c} />
-        <Metodo c={c} />
+        <Mudou c={c} />
+        <ComoFunciona c={c} />
+        <Plataforma c={c} />
+        <Displays c={c} />
+        <Pacotes c={c} />
+        <Tecnologia c={c} />
+        <Contas c={c} />
+        <Industria c={c} />
+        <Simulador c={c} />
+        <Grupo c={c} />
         <Honestidade c={c} />
-        <Perfis c={c} />
-        <Numeros c={c} />
         <Faq c={c} />
         <Conversao c={c} />
       </main>

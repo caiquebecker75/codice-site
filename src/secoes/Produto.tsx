@@ -1,103 +1,82 @@
-import { useState, type ReactElement } from "react";
+import { useState } from "react";
 import { Revelar, TituloCortina } from "../componentes/Base";
-import { partirTitulo } from "./Narrativa";
-import { useAoEntrar } from "../hooks/uso";
+import { Visor3D } from "../componentes/Visor3D";
+import { partirTitulo, real } from "./Mercado";
 import type { Conteudo } from "../conteudo/tipos";
 
 /* =====================================================================
-   O sistema por dentro, o módulo de sensores e a execução em loja.
+   O display: formatos em 3D, pacotes de tecnologia e o que cada
+   sensor decide na operação.
    ===================================================================== */
 
-const CORES_ESPACO: Record<string, string> = {
-  inicio: "#2F73FF",
-  comercial: "#32C48D",
-  midia: "#FF6B8B",
-  rede: "#FFA23A",
-  frota: "#5B6EE8",
-  pdv: "#1DD4C8",
-  operacao: "#12A97C",
-  analises: "#8C7BFF",
-  admin: "#6B7994",
-};
-
-export function Sistema({ c }: { c: Conteudo }) {
+export function Displays({ c }: { c: Conteudo }) {
   const [atual, setAtual] = useState(0);
-  const espaco = c.sistema.espacos[atual];
+  const formato = c.displays.formatos[atual];
 
   return (
-    <section id="sistema" className="secao bg-papel">
+    <section id="displays" className="secao bg-papel-2">
       <div className="env">
-        <div className="max-w-3xl">
-          <p className="chapeu">{c.sistema.chapeu}</p>
-          <TituloCortina className="titulo-secao mt-6" linhas={partirTitulo(c.sistema.titulo)} />
-          <p className="lead mt-6">{c.sistema.lead}</p>
+        <div className="grid gap-10 lg:grid-cols-[.5fr_.5fr] lg:items-end">
+          <div>
+            <p className="chapeu">{c.displays.chapeu}</p>
+            <TituloCortina className="titulo-secao mt-6" linhas={partirTitulo(c.displays.titulo)} />
+          </div>
+          <p className="lead">{c.displays.lead}</p>
         </div>
 
-        <div className="mt-14 grid gap-5 lg:grid-cols-[.42fr_.58fr]">
-          <ul className="grid gap-1.5" role="list">
-            {c.sistema.espacos.map((item, i) => {
-              const ativo = i === atual;
-              return (
-                <li key={item.id}>
-                  <button
-                    type="button"
-                    onClick={() => setAtual(i)}
-                    aria-current={ativo ? "true" : undefined}
-                    className={`flex w-full items-center gap-4 rounded-2xl px-5 py-4 text-left transition-all duration-300 ${
-                      ativo ? "bg-navy text-white shadow-[var(--shadow-suave)]" : "bg-white/70 hover:bg-white"
-                    }`}
-                  >
-                    <span
-                      className="grid h-9 w-9 shrink-0 place-items-center rounded-xl text-white"
-                      style={{ background: CORES_ESPACO[item.id] }}
-                      aria-hidden="true"
-                    >
-                      <IconeEspaco id={item.id} />
-                    </span>
-                    <span className={`flex-1 font-display text-[17px] font-bold ${ativo ? "text-white" : "text-tinta"}`}>
-                      {item.nome}
-                    </span>
-                    <span className={`num text-[13px] font-semibold ${ativo ? "text-teal" : "text-tinta-3"}`}>
-                      {String(item.telas.length).padStart(2, "0")}
-                    </span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
+        <div className="mt-10 flex flex-wrap gap-2" role="tablist" aria-label={c.displays.chapeu}>
+          {c.displays.formatos.map((item, i) => (
+            <button
+              key={item.id}
+              role="tab"
+              aria-selected={atual === i}
+              tabIndex={atual === i ? 0 : -1}
+              onKeyDown={(e) => {
+                if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+                  e.preventDefault();
+                  setAtual((atual + (e.key === "ArrowRight" ? 1 : -1) + c.displays.formatos.length) % c.displays.formatos.length);
+                }
+              }}
+              onClick={() => setAtual(i)}
+              className={`rounded-full px-5 py-3 text-[14.5px] font-semibold transition-colors ${
+                atual === i ? "bg-navy text-white" : "bg-white text-tinta-2 hover:text-tinta"
+              }`}
+            >
+              {item.rotulo}
+            </button>
+          ))}
+        </div>
 
-          <div className="cartao relative flex min-h-[420px] flex-col overflow-hidden p-8 sm:p-10">
-            <span
-              className="absolute right-0 top-0 h-40 w-40 rounded-bl-[120px] opacity-10"
-              style={{ background: CORES_ESPACO[espaco.id] }}
-              aria-hidden="true"
+        <div className="mt-6 grid gap-5 lg:grid-cols-[.56fr_.44fr]">
+          <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-white to-papel shadow-[var(--shadow-suave)]">
+            <Visor3D
+              key={formato.id}
+              modelo={formato.id}
+              alt={`${formato.nome}, display da Códice em três dimensões`}
+              className="aspect-[4/3.4] w-full"
+              instrucao={c.displays.instrucao}
             />
-            <div key={espaco.id} className="relative animate-[montar_.5s_ease-out_both]">
-              <span
-                className="inline-flex h-12 w-12 items-center justify-center rounded-2xl text-white"
-                style={{ background: CORES_ESPACO[espaco.id] }}
-                aria-hidden="true"
-              >
-                <IconeEspaco id={espaco.id} grande />
-              </span>
-              <h3 className="mt-6 font-display text-[clamp(26px,3vw,36px)] font-extrabold text-tinta">{espaco.nome}</h3>
-              <p className="mt-4 max-w-[46ch] text-[16.5px] leading-relaxed text-tinta-2">{espaco.resumo}</p>
+          </div>
 
-              <p className="mt-8 text-[12px] font-bold uppercase tracking-[.14em] text-tinta-3">
-                <span className="num">{espaco.telas.length}</span> {c.sistema.contagem}
-              </p>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {espaco.telas.map((tela, i) => (
-                  <li
-                    key={tela}
-                    className="pilula animate-[montar_.4s_ease-out_both]"
-                    style={{ animationDelay: `${i * 45}ms` }}
-                  >
-                    {tela}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div key={formato.id} className="flex flex-col justify-center rounded-[28px] bg-navy p-8 text-white sm:p-10">
+            <p className="text-[12px] font-bold uppercase tracking-[.16em] text-teal">
+              {String(atual + 1).padStart(2, "0")} / {String(c.displays.formatos.length).padStart(2, "0")}
+            </p>
+            <h3 className="mt-4 font-display text-[clamp(26px,3vw,36px)] font-extrabold">{formato.nome}</h3>
+            <p className="mt-4 text-[16px] leading-relaxed text-white/70">{formato.texto}</p>
+
+            <dl className="mt-8 grid gap-4">
+              <div className="flex items-baseline justify-between gap-4 border-b border-white/12 pb-4">
+                <dt className="text-[13px] font-semibold uppercase tracking-[.08em] text-white/40">{c.displays.rotulos.uso}</dt>
+                <dd className="text-right text-[15.5px]">{formato.uso}</dd>
+              </div>
+              <div className="flex items-baseline justify-between gap-4">
+                <dt className="text-[13px] font-semibold uppercase tracking-[.08em] text-white/40">{c.displays.rotulos.medidas}</dt>
+                <dd className="num text-right text-[15.5px]">{formato.medidas}</dd>
+              </div>
+            </dl>
+
+            <p className="mt-8 text-[13px] text-white/35">{c.displays.rotulos.ver3d}</p>
           </div>
         </div>
       </div>
@@ -105,216 +84,141 @@ export function Sistema({ c }: { c: Conteudo }) {
   );
 }
 
-export function Sensores({ c }: { c: Conteudo }) {
-  const [foco, setFoco] = useState(0);
-  const pontos = [
-    { x: "50%", y: "18%" },
-    { x: "26%", y: "48%" },
-    { x: "74%", y: "52%" },
-    { x: "50%", y: "82%" },
-  ];
-
+export function Pacotes({ c }: { c: Conteudo }) {
   return (
-    <section id="sensores" className="escuro grao relative overflow-hidden">
-      <div className="env secao relative grid items-center gap-14 lg:grid-cols-[.92fr_1.08fr] lg:gap-20">
-        <div className="relative">
-          <div className="malha absolute inset-0" aria-hidden="true" />
-          <figure className="relative rounded-[28px] bg-gradient-to-br from-navy-700 to-navy p-6 shadow-[var(--shadow-alta)]">
-            <img
-              src="/img/display-ilha.png"
-              alt={c.sensores.legenda}
-              width={900}
-              height={900}
-              loading="lazy"
-              decoding="async"
-              className="rounded-2xl"
-            />
-            {pontos.map((ponto, i) => (
-              <button
-                key={i}
-                type="button"
-                className="absolute grid h-8 w-8 -translate-x-1/2 -translate-y-1/2 place-items-center"
-                style={{ left: ponto.x, top: ponto.y }}
-                aria-label={c.sensores.itens[i].titulo}
-                aria-pressed={foco === i}
-                onClick={() => setFoco(i)}
-                onMouseEnter={() => setFoco(i)}
-              >
-                <span
-                  className={`absolute h-8 w-8 rounded-full bg-teal/30 ${foco === i ? "animate-[pulsar_2s_ease-in-out_infinite]" : ""}`}
-                />
-                <span className={`relative h-3 w-3 rounded-full transition-colors ${foco === i ? "bg-teal" : "bg-white/70"}`} />
-              </button>
-            ))}
-            <figcaption className="mt-4 text-center text-[12px] text-white/40">{c.sensores.legenda}</figcaption>
-          </figure>
-        </div>
-
-        <div>
-          <p className="chapeu">{c.sensores.chapeu}</p>
-          <TituloCortina className="titulo-secao mt-6" linhas={partirTitulo(c.sensores.titulo)} />
-          <p className="lead mt-6">{c.sensores.lead}</p>
-
-          <ul className="mt-10 grid gap-3">
-            {c.sensores.itens.map((item, i) => (
-              <li key={item.titulo}>
-                <button
-                  type="button"
-                  onClick={() => setFoco(i)}
-                  onMouseEnter={() => setFoco(i)}
-                  className={`flex w-full items-start gap-4 rounded-2xl p-5 text-left transition-colors duration-300 ${
-                    foco === i ? "bg-white/10" : "bg-white/4 hover:bg-white/8"
-                  }`}
-                >
-                  <span
-                    className={`grid h-9 w-9 shrink-0 place-items-center rounded-xl transition-colors ${
-                      foco === i ? "bg-teal text-navy" : "bg-white/10 text-teal"
-                    }`}
-                    aria-hidden="true"
-                  >
-                    <IconeSensor indice={i} />
-                  </span>
-                  <span>
-                    <span className="block font-display text-[17px] font-bold text-white">{item.titulo}</span>
-                    <span className="mt-1.5 block text-[14.5px] leading-relaxed text-white/60">{item.texto}</span>
-                  </span>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function Pdv({ c }: { c: Conteudo }) {
-  const { alvo, dentro } = useAoEntrar<HTMLDivElement>("0px 0px -25% 0px");
-
-  return (
-    <section id="pdv" className="secao bg-papel-2">
+    <section id="pacotes" className="secao bg-papel">
       <div className="env">
         <div className="max-w-3xl">
-          <p className="chapeu">{c.pdv.chapeu}</p>
-          <TituloCortina className="titulo-secao mt-6" linhas={partirTitulo(c.pdv.titulo)} />
-          <p className="lead mt-6">{c.pdv.lead}</p>
+          <p className="chapeu">{c.pacotes.chapeu}</p>
+          <TituloCortina className="titulo-secao mt-6" linhas={partirTitulo(c.pacotes.titulo)} />
+          <p className="lead mt-6">{c.pacotes.lead}</p>
         </div>
 
-        <div ref={alvo} className="relative mt-16">
-          {/* trilho que se desenha conforme a seção entra */}
-          <svg
-            className="pointer-events-none absolute inset-x-0 top-7 hidden h-4 w-full lg:block"
-            viewBox="0 0 1000 8"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <line x1="60" y1="4" x2="940" y2="4" stroke="#C9D5EA" strokeWidth="2" strokeDasharray="6 8" />
-            <line
-              x1="60"
-              y1="4"
-              x2="940"
-              y2="4"
-              stroke="#2F73FF"
-              strokeWidth="2"
-              strokeDasharray="880"
-              style={{
-                ["--traco" as string]: "880",
-                strokeDashoffset: dentro ? 0 : 880,
-                transition: "stroke-dashoffset 1.8s cubic-bezier(.2,.7,.3,1)",
-              }}
-            />
-          </svg>
-
-          <ol className="relative grid gap-8 lg:grid-cols-4 lg:gap-6">
-            {c.pdv.passos.map((passo, i) => (
-              <li key={passo.titulo} className="flex gap-5 lg:block">
-                <span
-                  className={`grid h-14 w-14 shrink-0 place-items-center rounded-2xl font-display text-[18px] font-extrabold transition-all duration-500 ${
-                    dentro ? "bg-azul text-white" : "bg-white text-tinta-3"
+        <div className="mt-14 grid gap-5 lg:grid-cols-3">
+          {c.pacotes.itens.map((item, i) => {
+            const destaque = i === 1;
+            return (
+              <Revelar key={item.id} atraso={i * 100}>
+                <article
+                  className={`group flex h-full flex-col overflow-hidden rounded-[28px] transition-transform duration-300 hover:-translate-y-1.5 ${
+                    destaque ? "bg-navy text-white shadow-[var(--shadow-alta)]" : "bg-white shadow-[var(--shadow-suave)]"
                   }`}
-                  style={{ transitionDelay: `${i * 200}ms` }}
                 >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="lg:mt-7">
-                  <h3 className="font-display text-[19px] font-bold text-tinta">{passo.titulo}</h3>
-                  <p className="mt-2.5 max-w-[34ch] text-[15px] leading-relaxed text-tinta-2">{passo.texto}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
+                  <div className={`relative aspect-[4/3] ${destaque ? "bg-white/5" : "bg-papel-2"}`}>
+                    <Visor3D
+                      modelo={item.id}
+                      alt={`Display do pacote ${item.nome}`}
+                      className="absolute inset-0"
+                      girar={false}
+                    />
+                    <span
+                      className={`absolute left-5 top-5 rounded-full px-3.5 py-1.5 text-[11.5px] font-bold uppercase tracking-[.1em] ${
+                        destaque ? "bg-teal text-navy" : "bg-navy text-white"
+                      }`}
+                    >
+                      {item.selo}
+                    </span>
+                  </div>
 
-        <div className="mt-16 grid gap-4 md:grid-cols-3">
-          {c.pdv.camadas.map((camada, i) => (
-            <Revelar key={camada.nome} atraso={i * 90}>
-              <article className="cartao h-full p-7">
-                <span
-                  className="grid h-10 w-10 place-items-center rounded-xl text-white"
-                  style={{ background: ["#5B6EE8", "#FFA23A", "#7C5CFC"][i] }}
-                  aria-hidden="true"
-                >
-                  <IconeCamada indice={i} />
-                </span>
-                <h3 className="mt-5 font-display text-[19px] font-bold text-tinta">{camada.nome}</h3>
-                <p className="mt-2.5 text-[15px] leading-relaxed text-tinta-2">{camada.texto}</p>
-              </article>
-            </Revelar>
-          ))}
+                  <div className="flex flex-1 flex-col p-7">
+                    <h3 className={`font-display text-[24px] font-extrabold ${destaque ? "text-white" : "text-tinta"}`}>{item.nome}</h3>
+                    <p className={`mt-2 text-[14.5px] leading-snug ${destaque ? "text-white/60" : "text-tinta-2"}`}>{item.quem}</p>
+
+                    <p className="mt-6 flex items-baseline gap-2">
+                      <span className={`num font-display text-[38px] font-extrabold leading-none ${destaque ? "text-teal" : "text-navy"}`}>
+                        {real(item.preco)}
+                      </span>
+                      <span className={`text-[13px] ${destaque ? "text-white/50" : "text-tinta-3"}`}>{c.pacotes.porMes}</span>
+                    </p>
+
+                    <ul className="mt-6 grid gap-3">
+                      {item.recursos.map((recurso) => (
+                        <li key={recurso} className={`flex gap-3 text-[15px] ${destaque ? "text-white/80" : "text-tinta-2"}`}>
+                          <svg viewBox="0 0 24 24" className={`mt-1 h-4 w-4 shrink-0 ${destaque ? "text-teal" : "text-azul"}`} fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                            <path d="M5 13l4 4 10-10" />
+                          </svg>
+                          {recurso}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <a href="#falar" className={`botao mt-8 w-full ${destaque ? "botao-teal" : "botao-tinta"}`}>
+                      {c.nav.cta}
+                    </a>
+                  </div>
+                </article>
+              </Revelar>
+            );
+          })}
         </div>
+        <p className="mt-6 text-[13px] text-tinta-3">{c.pacotes.nota}</p>
       </div>
     </section>
   );
 }
 
-/* ------------------------------------------------------ ícones ---- */
+export function Tecnologia({ c }: { c: Conteudo }) {
+  const [atual, setAtual] = useState(0);
+  const modulo = c.tecnologia.modulos[atual];
 
-function IconeEspaco({ id, grande = false }: { id: string; grande?: boolean }) {
-  const t = grande ? "h-6 w-6" : "h-[18px] w-[18px]";
-  const comum = { fill: "none", stroke: "currentColor", strokeWidth: 1.9, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
-  const desenhos: Record<string, ReactElement> = {
-    inicio: <path d="M3 12h4l3 8 4-16 3 8h4" {...comum} />,
-    comercial: <path d="M3 5h18l-7 8v6l-4 2v-8z" {...comum} />,
-    midia: <><rect x="3" y="3" width="8" height="8" rx="1.5" {...comum} /><rect x="13" y="3" width="8" height="8" rx="1.5" {...comum} /><rect x="3" y="13" width="8" height="8" rx="1.5" {...comum} /><rect x="13" y="13" width="8" height="8" rx="1.5" {...comum} /></>,
-    rede: <path d="M4 9l2-5h12l2 5M4 9v11h16V9M4 9h16M10 20v-6h4v6" {...comum} />,
-    frota: <><rect x="3" y="4" width="18" height="12" rx="1.6" {...comum} /><path d="M9 20h6M12 16v4" {...comum} /></>,
-    pdv: <><circle cx="12" cy="12" r="8" {...comum} /><circle cx="12" cy="12" r="3" {...comum} /></>,
-    operacao: <path d="M14 6l4 4-8 8H6v-4zM13 7l4 4" {...comum} />,
-    analises: <path d="M4 20V10M10 20V4M16 20v-8M22 20H2" {...comum} />,
-    admin: <><circle cx="12" cy="12" r="3" {...comum} /><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" {...comum} /></>,
-  };
   return (
-    <svg viewBox="0 0 24 24" className={t} aria-hidden="true">
-      {desenhos[id]}
-    </svg>
-  );
-}
+    <section id="tecnologia" className="escuro grao relative overflow-hidden bg-navy-800">
+      <div className="env secao">
+        <div className="grid gap-10 lg:grid-cols-[.5fr_.5fr] lg:items-end">
+          <div>
+            <p className="chapeu">{c.tecnologia.chapeu}</p>
+            <TituloCortina className="titulo-secao mt-6" linhas={partirTitulo(c.tecnologia.titulo)} />
+          </div>
+          <p className="lead">{c.tecnologia.lead}</p>
+        </div>
 
-function IconeSensor({ indice }: { indice: number }) {
-  const comum = { fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
-  const desenhos = [
-    <path key="a" d="M4 12h3l2-5 3 10 2-6 2 3h4" {...comum} />,
-    <g key="b"><path d="M12 3v9M9 7h6" {...comum} /><circle cx="12" cy="17" r="3.2" {...comum} /></g>,
-    <g key="c"><path d="M5 12.5a10 10 0 0114 0M8 16a6 6 0 018 0" {...comum} /><circle cx="12" cy="19" r="1.3" fill="currentColor" stroke="none" /></g>,
-    <g key="d"><rect x="4" y="7" width="16" height="12" rx="1.6" {...comum} /><path d="M8 4v3M16 4v3M9 13h6" {...comum} /></g>,
-  ];
-  return (
-    <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" aria-hidden="true">
-      {desenhos[indice]}
-    </svg>
-  );
-}
+        <div className="mt-12 grid gap-5 lg:grid-cols-[.56fr_.44fr]">
+          <div>
+            <p className="mb-4 text-[12px] font-bold uppercase tracking-[.14em] text-white/35">{c.tecnologia.instrucao}</p>
+            <div className="grid gap-2 sm:grid-cols-2">
+              {c.tecnologia.modulos.map((item, i) => {
+                const ativo = i === atual;
+                const interna = item.camada === "interna";
+                return (
+                  <button
+                    key={item.titulo}
+                    type="button"
+                    onClick={() => setAtual(i)}
+                    aria-current={ativo ? "true" : undefined}
+                    className={`rounded-2xl p-4 text-left transition-all duration-300 ${
+                      ativo ? "bg-teal text-navy" : "bg-white/5 text-white hover:bg-white/10"
+                    }`}
+                  >
+                    <span className={`block text-[10.5px] font-bold uppercase tracking-[.12em] ${ativo ? "text-navy/60" : interna ? "text-teal" : "text-white/35"}`}>
+                      {interna ? c.tecnologia.camadas.interna : c.tecnologia.camadas.externa} · {item.plano}
+                    </span>
+                    <span className="mt-1.5 block font-display text-[15.5px] font-bold leading-tight">{item.titulo}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
 
-function IconeCamada({ indice }: { indice: number }) {
-  const comum = { fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
-  const desenhos = [
-    <g key="a"><rect x="3" y="4" width="18" height="12" rx="1.6" {...comum} /><path d="M9 20h6M12 16v4" {...comum} /></g>,
-    <g key="b"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z" {...comum} /><circle cx="12" cy="10" r="2.4" {...comum} /></g>,
-    <g key="c"><rect x="3" y="6" width="18" height="14" rx="2" {...comum} /><circle cx="12" cy="13" r="3.4" {...comum} /><path d="M8 6l1.5-2h5L16 6" {...comum} /></g>,
-  ];
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
-      {desenhos[indice]}
-    </svg>
+          <div key={modulo.titulo} className="flex animate-[montar_.45s_ease-out_both] flex-col rounded-[28px] bg-white p-8 text-tinta sm:p-10">
+            <span className="text-[11.5px] font-bold uppercase tracking-[.14em] text-azul">
+              {modulo.camada === "interna" ? c.tecnologia.camadas.interna : c.tecnologia.camadas.externa}
+            </span>
+            <h3 className="mt-3 font-display text-[26px] font-extrabold leading-tight">{modulo.titulo}</h3>
+            <p className="mt-4 text-[16px] leading-relaxed text-tinta-2">{modulo.texto}</p>
+
+            <dl className="mt-8 grid gap-3">
+              <div className="flex items-center justify-between gap-4 rounded-xl bg-papel px-5 py-3.5">
+                <dt className="text-[13px] font-semibold text-tinta-3">{c.tecnologia.rotulos.entra}</dt>
+                <dd className="font-display text-[15px] font-bold text-navy">{modulo.plano}</dd>
+              </div>
+              <div className="flex items-center justify-between gap-4 rounded-xl bg-papel px-5 py-3.5">
+                <dt className="text-[13px] font-semibold text-tinta-3">{c.tecnologia.rotulos.decide}</dt>
+                <dd className="text-right text-[14.5px] font-semibold text-tinta">{modulo.decide}</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

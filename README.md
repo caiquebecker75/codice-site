@@ -1,7 +1,15 @@
 # Site da Códice
 
-Site institucional da plataforma **Códice**, em português, inglês e espanhol.
-Página única de narrativa, mais política de privacidade e página 404, nos três idiomas.
+Site comercial da **Códice**, em português, inglês e espanhol. O conteúdo vem da
+apresentação de venda (repo `neoband-retail-media`): preços, formatos, pacotes,
+tecnologia embarcada e a conta da rede são os mesmos do deck.
+
+Página única, mais política de privacidade e página 404, nos três idiomas.
+
+**Peças interativas:** calculadora do custo de não agir, galeria com as 7 telas reais
+do sistema (com ampliação em tela cheia), os 6 formatos de display em 3D, os 10 módulos
+de tecnologia, o comparador de comprar contra assinar, o seletor de regime tributário e
+o simulador da rede com gráfico de lucro acumulado.
 
 - **No ar:** https://seashell-buffalo-304816.hostingersite.com
 - **Idiomas:** `/` (pt-BR), `/en/`, `/es/`
@@ -37,7 +45,9 @@ Se a Hostinger ficar para trás, o caminho manual é hPanel, Painel de controle 
 | Texto em inglês | `src/conteudo/en.ts` |
 | Texto em espanhol | `src/conteudo/es.ts` |
 | Cores, tipografia, sombras, raios | `src/estilos/global.css` (bloco `@theme`) |
-| Imagens | `public/img/` |
+| Fotos da operação | `public/fotos/` |
+| Telas do sistema | `public/sistema/` |
+| Modelos 3D dos displays | `public/3d/` (arquivo .glb e o poster .webp) |
 | Imagem de compartilhamento | `public/og.png` (gerada por `scripts/og.html`) |
 
 Os três idiomas obedecem ao mesmo contrato em `src/conteudo/tipos.ts`: se uma seção

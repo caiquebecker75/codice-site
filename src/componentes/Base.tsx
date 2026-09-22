@@ -54,12 +54,21 @@ export function TituloCortina({
 }
 
 /** Número que conta ao aparecer. */
-export function Contador({ valor, sufixo = "" }: { valor: number; sufixo?: string }) {
+export function Contador({
+  valor,
+  sufixo = "",
+  formatar,
+}: {
+  valor: number;
+  sufixo?: string;
+  /** recebe o número inteiro da animação e devolve o texto exibido */
+  formatar?: (n: number) => string;
+}) {
   const { alvo, dentro } = useAoEntrar<HTMLSpanElement>();
   const atual = useContagem(valor, dentro);
   return (
     <span ref={alvo} className="num">
-      {atual}
+      {formatar ? formatar(atual) : atual}
       {sufixo}
     </span>
   );

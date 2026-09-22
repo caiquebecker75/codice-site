@@ -14,9 +14,11 @@ export const SITE = {
 } as const;
 
 export const CONTATO = {
-  email: "contato@75lab.com.br",
-  /** PENDENTE: número oficial de WhatsApp. Vazio esconde o botão. */
-  whatsapp: "",
+  /** Contato comercial da Códice, o mesmo da apresentação de venda. */
+  email: "contato@neoband.com.br",
+  telefone: "(11) 97178-7042",
+  /** Link completo. Vazio esconde os botões de WhatsApp. */
+  whatsapp: "https://wa.me/5511971787042",
   instagram: "https://www.instagram.com/setecincolab/",
   linkedin: "https://www.linkedin.com/company/75lab",
   site75lab: "https://75lab.com.br",

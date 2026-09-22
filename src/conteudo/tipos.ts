@@ -1,18 +1,16 @@
 /* =====================================================================
    Forma do conteúdo. Os três idiomas obedecem a este contrato, então
    uma seção nova aparece como erro de tipo nos arquivos que faltarem.
+
+   O conteúdo comercial vem da apresentação de venda da Códice
+   (repo neoband-retail-media): preços, formatos, pacotes, tecnologia
+   e a conta da rede são os mesmos do deck.
    ===================================================================== */
 
 export interface Selo { valor: string; rotulo: string }
-export interface Item { titulo: string; texto: string }
 
 export interface Conteudo {
-  meta: {
-    titulo: string;
-    descricao: string;
-    palavras: string;
-    ogAlt: string;
-  };
+  meta: { titulo: string; descricao: string; palavras: string; ogAlt: string };
   nav: {
     links: { id: string; rotulo: string }[];
     cta: string;
@@ -30,69 +28,122 @@ export interface Conteudo {
     ctaSecundario: string;
     selos: Selo[];
     rolar: string;
-    painel: {
-      barra: string;
-      kpis: { rotulo: string; valor: string; nota: string }[];
-      graficoTitulo: string;
-      gradeTitulo: string;
-      legenda: [string, string, string];
-    };
+    legendaFoto: string;
   };
-  manifesto: {
+  mudou: {
     chapeu: string;
     titulo: string;
-    paragrafos: string[];
-    assinatura: string;
-    marquee: string[];
+    lead: string;
+    investimento: { valor: number; prefixo: string; sufixo: string; separador: string; rotulo: string; fonte: string };
+    crescimento: { valor: number; sufixo: string; rotulo: string };
+    canais: { nome: string; nota: string }[];
+    calculadora: {
+      titulo: string;
+      lojas: string;
+      displays: string;
+      cota: string;
+      ocupacao: string;
+      resultado: string;
+      porAno: string;
+      nota: string;
+    };
   };
-  desafio: {
+  comoFunciona: {
+    chapeu: string;
+    titulo: string;
+    lead: string;
+    passos: { n: string; titulo: string; texto: string; foto: string; alt: string }[];
+    destaque: { valor: string; rotulo: string; nota: string };
+    regra: string;
+  };
+  plataforma: {
+    chapeu: string;
+    titulo: string;
+    lead: string;
+    telas: { arquivo: string; nome: string; texto: string }[];
+    ampliar: string;
+    fechar: string;
+    anterior: string;
+    proxima: string;
+    aviso: string;
+    entrar: string;
+  };
+  displays: {
     chapeu: string;
     titulo: string;
     lead: string;
     instrucao: string;
-    itens: { n: string; titulo: string; texto: string; efeito: string }[];
+    formatos: { id: string; rotulo: string; nome: string; texto: string; uso: string; medidas: string }[];
+    rotulos: { uso: string; medidas: string; ver3d: string };
   };
-  solucao: {
+  pacotes: {
     chapeu: string;
     titulo: string;
     lead: string;
-    abas: {
-      id: "fisico" | "midia";
-      nome: string;
+    porMes: string;
+    itens: { id: string; nome: string; preco: number; selo: string; quem: string; recursos: string[] }[];
+    nota: string;
+  };
+  tecnologia: {
+    chapeu: string;
+    titulo: string;
+    lead: string;
+    instrucao: string;
+    camadas: { interna: string; externa: string };
+    modulos: { camada: "interna" | "externa"; plano: string; titulo: string; texto: string; decide: string }[];
+    rotulos: { entra: string; decide: string };
+  };
+  contas: {
+    chapeu: string;
+    titulo: string;
+    lead: string;
+    comprar: {
+      titulo: string;
+      valor: number;
       unidade: string;
-      linhas: { rotulo: string; valor: string }[];
-      travaTitulo: string;
-      trava: string;
-      demo: string;
-    }[];
-    fecho: string;
+      linhas: string[];
+      contras: string[];
+    };
+    assinar: {
+      titulo: string;
+      valor: number;
+      unidade: string;
+      selo: string;
+      linhas: string[];
+    };
+    cota: { titulo: string; texto: string; meses: string };
+    fiscal: {
+      titulo: string;
+      lead: string;
+      regimes: { nome: string; nota: string; custo: number; volta: number }[];
+      rotulos: { custoEfetivo: string; volta: string; semEfeito: string };
+      ressalva: string;
+    };
   };
-  sistema: {
+  industria: {
     chapeu: string;
     titulo: string;
     lead: string;
-    espacos: { id: string; nome: string; resumo: string; telas: string[] }[];
-    contagem: string;
+    linhas: { dor: string; dorTexto: string; solucao: string; solucaoTexto: string }[];
+    etapas: { proprio: { titulo: string; itens: string[] }; codice: { titulo: string; itens: string[] } };
   };
-  sensores: {
+  simulador: {
     chapeu: string;
     titulo: string;
     lead: string;
-    itens: Item[];
-    legenda: string;
+    campos: { pacote: string; displays: string; lojas: string; cota: string; ocupacao: string; periodo: string };
+    periodos: { rotulo: string; meses: number }[];
+    saidas: { receita: string; aluguel: string; lucro: string };
+    grafico: string;
+    nota: string;
+    enviar: string;
   };
-  pdv: {
+  grupo: {
     chapeu: string;
     titulo: string;
     lead: string;
-    passos: Item[];
-    camadas: { nome: string; texto: string }[];
-  };
-  metodo: {
-    chapeu: string;
-    titulo: string;
-    lead: string;
-    etapas: { prazo: string; titulo: string; texto: string }[];
+    empresas: { nome: string; papel: string; texto: string; numeros: { valor: string; rotulo: string }[] }[];
+    ressalva: string;
   };
   honestidade: {
     chapeu: string;
@@ -100,13 +151,6 @@ export interface Conteudo {
     lead: string;
     itens: { afirma: string; naoAfirma: string }[];
   };
-  perfis: {
-    chapeu: string;
-    titulo: string;
-    lead: string;
-    cartoes: { tipo: string; nome: string; pergunta: string; ganhos: string[] }[];
-  };
-  numeros: { chapeu: string; titulo: string; itens: { valor: number; sufixo: string; rotulo: string; nota: string }[] };
   faq: { chapeu: string; titulo: string; itens: { pergunta: string; resposta: string }[] };
   conversao: {
     chapeu: string;
@@ -120,8 +164,8 @@ export interface Conteudo {
     sucessoDetalhe: string;
     erro: string;
     alternativaTitulo: string;
+    alternativaWhatsapp: string;
     alternativaEmail: string;
-    alternativaPlataforma: string;
     consentimento: string;
   };
   rodape: {

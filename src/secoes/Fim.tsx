@@ -1,8 +1,8 @@
 import { useId, useState } from "react";
 import { Acordeao, BotaoMagnetico, Revelar, TituloCortina } from "../componentes/Base";
-import { partirTitulo } from "./Narrativa";
+import { partirTitulo } from "./Mercado";
 import { Logotipo, Hexagono } from "../componentes/Marca";
-import { CONTATO, IDIOMAS, PLATAFORMA, SITE, type Idioma } from "../conteudo/config";
+import { CONTATO, IDIOMAS, SITE, type Idioma } from "../conteudo/config";
 import type { Conteudo } from "../conteudo/tipos";
 
 /* =====================================================================
@@ -93,9 +93,11 @@ export function Conversao({ c }: { c: Conteudo }) {
                   <a href={`mailto:${CONTATO.email}`} className="botao botao-vazado">
                     {c.conversao.alternativaEmail}
                   </a>
-                  <a href={PLATAFORMA} target="_blank" rel="noopener noreferrer" className="botao botao-vazado">
-                    {c.conversao.alternativaPlataforma}
-                  </a>
+                  {CONTATO.whatsapp && (
+                    <a href={CONTATO.whatsapp} target="_blank" rel="noopener noreferrer" className="botao botao-vazado">
+                      {c.conversao.alternativaWhatsapp}
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -324,6 +326,13 @@ export function Rodape({
                 Instagram
               </a>
             </li>
+            {CONTATO.whatsapp && (
+              <li>
+                <a className="transition-colors hover:text-teal" href={CONTATO.whatsapp} target="_blank" rel="noopener noreferrer">
+                  {CONTATO.telefone}
+                </a>
+              </li>
+            )}
             <li>
               <a className="transition-colors hover:text-teal" href={CONTATO.site75lab} target="_blank" rel="noopener noreferrer">
                 {SITE.operadora}
@@ -373,3 +382,77 @@ export function Rodape({
 }
 
 export { Revelar };
+
+/* ------------------------------------------------- grupo e provas --- */
+
+export function Grupo({ c }: { c: Conteudo }) {
+  return (
+    <section id="grupo" className="secao bg-papel">
+      <div className="env">
+        <div className="max-w-3xl">
+          <p className="chapeu">{c.grupo.chapeu}</p>
+          <TituloCortina className="titulo-secao mt-6" linhas={partirTitulo(c.grupo.titulo)} />
+          <p className="lead mt-6">{c.grupo.lead}</p>
+        </div>
+
+        <div className="mt-14 grid gap-5 lg:grid-cols-2">
+          {c.grupo.empresas.map((empresa, i) => (
+            <Revelar key={empresa.nome} atraso={i * 110}>
+              <article className="cartao flex h-full flex-col p-8 sm:p-10">
+                <p className="text-[11.5px] font-bold uppercase tracking-[.16em] text-azul">{empresa.papel}</p>
+                <h3 className="mt-3 font-display text-[28px] font-extrabold text-tinta">{empresa.nome}</h3>
+                <p className="mt-4 max-w-[42ch] text-[15.5px] leading-relaxed text-tinta-2">{empresa.texto}</p>
+
+                <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-tinta/10 pt-7 sm:grid-cols-4">
+                  {empresa.numeros.map((numero) => (
+                    <div key={numero.rotulo}>
+                      <dt className="num font-display text-[24px] font-extrabold leading-none text-navy">{numero.valor}</dt>
+                      <dd className="mt-1.5 text-[12.5px] leading-snug text-tinta-3">{numero.rotulo}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </article>
+            </Revelar>
+          ))}
+        </div>
+        <p className="mt-6 text-[13px] text-tinta-3">{c.grupo.ressalva}</p>
+      </div>
+    </section>
+  );
+}
+
+export function Honestidade({ c }: { c: Conteudo }) {
+  return (
+    <section id="honestidade" className="escuro grao relative overflow-hidden bg-navy-800">
+      <div className="env secao">
+        <div className="max-w-3xl">
+          <p className="chapeu">{c.honestidade.chapeu}</p>
+          <TituloCortina className="titulo-secao mt-6" linhas={partirTitulo(c.honestidade.titulo)} />
+          <p className="lead mt-6">{c.honestidade.lead}</p>
+        </div>
+
+        <ul className="mt-14 grid gap-px overflow-hidden rounded-[26px] bg-white/10 sm:grid-cols-2">
+          {c.honestidade.itens.map((item, i) => (
+            <Revelar key={item.afirma} como="li" atraso={(i % 2) * 80} className="bg-navy-800">
+              <div className="flex h-full flex-col gap-4 p-7 sm:flex-row sm:items-center sm:gap-6">
+                <p className="flex flex-1 items-start gap-3 text-[15.5px] leading-snug text-white">
+                  <svg viewBox="0 0 24 24" className="mt-0.5 h-5 w-5 shrink-0 text-teal" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 13l4 4 10-10" />
+                  </svg>
+                  {item.afirma}
+                </p>
+                <span className="hidden h-10 w-px bg-white/12 sm:block" aria-hidden="true" />
+                <p className="flex flex-1 items-start gap-3 text-[15px] leading-snug text-white/45">
+                  <svg viewBox="0 0 24 24" className="mt-0.5 h-5 w-5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
+                    <path d="M7 7l10 10M17 7L7 17" />
+                  </svg>
+                  {item.naoAfirma}
+                </p>
+              </div>
+            </Revelar>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}

@@ -228,6 +228,40 @@
     box-shadow: 0 0 0 1.5px var(--color-teal);
   }
 
+  /* ------------------------------------------------- deslizador */
+  .deslizador {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-teal) var(--pct, 50%), rgba(107, 122, 149, .25) var(--pct, 50%));
+    cursor: pointer;
+  }
+  .deslizador::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 999px;
+    background: var(--color-navy);
+    box-shadow: 0 4px 12px rgba(6, 27, 73, .32);
+    cursor: grab;
+    transition: transform .15s;
+  }
+  .deslizador::-webkit-slider-thumb:active { cursor: grabbing; transform: scale(1.12); }
+  .deslizador::-moz-range-thumb {
+    width: 26px;
+    height: 26px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--color-navy);
+    box-shadow: 0 4px 12px rgba(6, 27, 73, .32);
+    cursor: grab;
+  }
+  .escuro .deslizador::-webkit-slider-thumb, .bg-navy-800 .deslizador::-webkit-slider-thumb { background: #fff; }
+  .escuro .deslizador::-moz-range-thumb, .bg-navy-800 .deslizador::-moz-range-thumb { background: #fff; }
+
   /* -------------------------------------------------- utilidades */
   .num { font-variant-numeric: tabular-nums; }
   .pilula {
