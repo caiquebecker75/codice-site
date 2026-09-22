@@ -40,6 +40,11 @@ export const pt: Conteudo = {
     ],
     rolar: "Role para entender",
     legendaFoto: "Display Códice instalado em supermercado",
+    provas: [
+      { icone: "fabrica", texto: "Fabricação própria, com 40 anos de ponto de venda" },
+      { icone: "ferramenta", texto: "Instalação e manutenção inclusas na assinatura" },
+      { icone: "grafico", texto: "Plataforma e medição dentro do contrato" },
+    ],
   },
   mudou: {
     chapeu: "O que mudou",
@@ -72,6 +77,26 @@ export const pt: Conteudo = {
       nota: "1 cota = 1 semana de 1 display. O valor já desconta R$ 499 por display por mês de assinatura.",
     },
   },
+  entrega: {
+    chapeu: "O que entregamos",
+    titulo: "A rede recebe uma operação de mídia pronta, não um móvel alugado.",
+    lead:
+      "Seis entregas em um contrato só. É o que transforma o espaço da loja em receita recorrente sem a rede montar fábrica, equipe de manutenção nem time de mídia.",
+    itens: [
+      { icone: "display", titulo: "O display na loja", texto: "Projeto, fabricação e montagem no ponto combinado, sem custo de entrada para a rede." },
+      { icone: "ferramenta", titulo: "Manutenção programada", texto: "Visita preventiva, reparo e reposição de peça inclusos na mensalidade." },
+      { icone: "calendario", titulo: "Comunicação cambiável", texto: "Troca da arte a cada campanha, com a marca certa na semana certa." },
+      { icone: "grafico", titulo: "Plataforma de gestão", texto: "Tabela, agenda, reserva, campanha e relatório no mesmo lugar, para a rede e para a marca." },
+      { icone: "sensor", titulo: "Medição no ponto", texto: "Sensor de fluxo, alerta de conexão e prova de veiculação, conforme o pacote contratado." },
+      { icone: "pessoas", titulo: "Apoio comercial", texto: "Material de venda, tabela sugerida e apoio na conversa com a indústria." },
+    ],
+    fecho: "Tudo isso cabe em R$ 499 por display, por mês.",
+  },
+  ctas: [
+    { id: "cta-rede", icone: "loja", titulo: "Quer ver isso rodando na sua rede?", texto: "Conversa de quarenta minutos com o seu número de lojas na mesa.", botao: "Falar com a Códice" },
+    { id: "cta-formato", icone: "display", titulo: "Qual formato combina com as suas lojas?", texto: "A gente monta a recomendação por bandeira, por corredor e por categoria.", botao: "Pedir recomendação" },
+    { id: "cta-proposta", icone: "dinheiro", titulo: "Leve esta conta para a sua diretoria.", texto: "Enviamos a proposta com os números da sua rede, prontos para apresentar.", botao: "Quero a proposta" },
+  ],
   comoFunciona: {
     chapeu: "Como funciona",
     titulo: "A Códice instala e mantém. A sua rede vende a semana.",
@@ -80,6 +105,7 @@ export const pt: Conteudo = {
     passos: [
       {
         n: "01",
+        icone: "ferramenta",
         titulo: "A Códice instala o display",
         texto: "Projeto, produção, montagem na loja e treinamento da equipe. A rede não desembolsa capital para começar.",
         foto: "/fotos/foto-instalacao.jpg",
@@ -87,6 +113,7 @@ export const pt: Conteudo = {
       },
       {
         n: "02",
+        icone: "calendario",
         titulo: "A rede vende a semana para as marcas",
         texto: "A indústria compra a cota semanal com a comunicação inclusa. Tabela, calendário e reserva ficam na plataforma.",
         foto: "/fotos/foto-ilha-supermercado.jpg",
@@ -94,6 +121,7 @@ export const pt: Conteudo = {
       },
       {
         n: "03",
+        icone: "grafico",
         titulo: "A Códice mantém e mede",
         texto: "Manutenção programada, troca de comunicação e relatório com prova de execução para a marca comprar de novo.",
         foto: "/fotos/foto-monitoramento.jpg",
@@ -153,7 +181,7 @@ export const pt: Conteudo = {
         preco: 499,
         selo: "Ideal para começar",
         quem: "Para começar a vender espaço já, com baixa complexidade.",
-        recursos: ["Display modular", "Comunicação cambiável", "QR patrimonial", "Manutenção inclusa"],
+        recursos: [{ icone: "display", texto: "Display modular" }, { icone: "calendario", texto: "Comunicação cambiável" }, { icone: "qr", texto: "QR patrimonial" }, { icone: "ferramenta", texto: "Manutenção inclusa" }],
       },
       {
         id: "sense",
@@ -161,7 +189,7 @@ export const pt: Conteudo = {
         preco: 849,
         selo: "Mais vendido",
         quem: "Para pontos de maior fluxo, com prova de que o público passou.",
-        recursos: ["Tudo do Essencial", "Sensor de proximidade", "Alertas de conexão", "Painel de execução"],
+        recursos: [{ icone: "check", texto: "Tudo do Essencial" }, { icone: "pessoas", texto: "Sensor de proximidade" }, { icone: "wifi", texto: "Alertas de conexão" }, { icone: "grafico", texto: "Painel de execução" }],
       },
       {
         id: "media",
@@ -169,7 +197,7 @@ export const pt: Conteudo = {
         preco: 1290,
         selo: "Maior valor por cota",
         quem: "Para lançamentos e campanhas premium, com vídeo dentro da loja.",
-        recursos: ["Tudo do Sense", "Tela e player", "Conteúdo remoto", "Prova de veiculação"],
+        recursos: [{ icone: "check", texto: "Tudo do Sense" }, { icone: "tela", texto: "Tela e player" }, { icone: "calendario", texto: "Conteúdo remoto" }, { icone: "escudo", texto: "Prova de veiculação" }],
       },
     ],
     nota: "Valores por display, por mês, com instalação, manutenção e plataforma inclusas.",
@@ -182,16 +210,16 @@ export const pt: Conteudo = {
     instrucao: "Clique em um módulo para ler",
     camadas: { interna: "Camada interna", externa: "Camada externa" },
     modulos: [
-      { camada: "interna", plano: "Essencial", titulo: "QR patrimonial e do shopper", texto: "Um código controla ativo, loja, campanha e check-in da equipe. O outro leva o shopper para cupom, pesquisa ou página da marca.", decide: "Prova de instalação e interesse" },
-      { camada: "interna", plano: "Essencial", titulo: "Geolocalização de visita", texto: "Registra a coordenada no check-in da equipe, com a precisão informada pelo aparelho. O QR sozinho não rastreia ninguém.", decide: "Comprovação de rota e visita" },
-      { camada: "interna", plano: "Sense", titulo: "Sensor de proximidade", texto: "Mede passagens na zona do display e permanência aproximada. Serve para precificar posição, não para prometer audiência.", decide: "Preço da cota por posição" },
-      { camada: "interna", plano: "Sense", titulo: "Conectividade e alertas", texto: "O display avisa quando cai, quando a campanha muda e quando alguma coisa precisa de visita técnica.", decide: "Uptime e rota de manutenção" },
-      { camada: "interna", plano: "Media", titulo: "Tela e conteúdo remoto", texto: "Playlist por dia, loja e categoria, trocada sem visita técnica, com registro de arquivo, horário e falhas.", decide: "Venda premium e prova de veiculação" },
-      { camada: "interna", plano: "Media", titulo: "Iluminação inteligente", texto: "LED que destaca o ponto com baixo consumo e reporta o próprio estado de funcionamento.", decide: "Destaque e saúde do ativo" },
-      { camada: "externa", plano: "Projeto", titulo: "Prateleira com peso", texto: "Variação de peso indica retirada, reposição e possível ruptura. Retirada não é venda confirmada.", decide: "Ruptura e reposição" },
-      { camada: "externa", plano: "Projeto", titulo: "Integração de sell-out", texto: "Cruza a campanha com a venda agregada por SKU, loja e data para avaliar impacto comercial com rigor.", decide: "Impacto real da campanha" },
-      { camada: "externa", plano: "Projeto", titulo: "Visão computacional", texto: "Confere planograma e disponibilidade por imagem de produto e prateleira. Nunca reconhecimento facial.", decide: "Conformidade de execução" },
-      { camada: "externa", plano: "Projeto", titulo: "Temperatura", texto: "Para categorias refrigeradas e sensíveis, com histórico e alerta de desvio.", decide: "Segurança da categoria" },
+      { camada: "interna", icone: "qr", plano: "Essencial", titulo: "QR patrimonial e do shopper", texto: "Um código controla ativo, loja, campanha e check-in da equipe. O outro leva o shopper para cupom, pesquisa ou página da marca.", decide: "Prova de instalação e interesse" },
+      { camada: "interna", icone: "mapa", plano: "Essencial", titulo: "Geolocalização de visita", texto: "Registra a coordenada no check-in da equipe, com a precisão informada pelo aparelho. O QR sozinho não rastreia ninguém.", decide: "Comprovação de rota e visita" },
+      { camada: "interna", icone: "pessoas", plano: "Sense", titulo: "Sensor de proximidade", texto: "Mede passagens na zona do display e permanência aproximada. Serve para precificar posição, não para prometer audiência.", decide: "Preço da cota por posição" },
+      { camada: "interna", icone: "wifi", plano: "Sense", titulo: "Conectividade e alertas", texto: "O display avisa quando cai, quando a campanha muda e quando alguma coisa precisa de visita técnica.", decide: "Uptime e rota de manutenção" },
+      { camada: "interna", icone: "tela", plano: "Media", titulo: "Tela e conteúdo remoto", texto: "Playlist por dia, loja e categoria, trocada sem visita técnica, com registro de arquivo, horário e falhas.", decide: "Venda premium e prova de veiculação" },
+      { camada: "interna", icone: "luz", plano: "Media", titulo: "Iluminação inteligente", texto: "LED que destaca o ponto com baixo consumo e reporta o próprio estado de funcionamento.", decide: "Destaque e saúde do ativo" },
+      { camada: "externa", icone: "balanca", plano: "Projeto", titulo: "Prateleira com peso", texto: "Variação de peso indica retirada, reposição e possível ruptura. Retirada não é venda confirmada.", decide: "Ruptura e reposição" },
+      { camada: "externa", icone: "dinheiro", plano: "Projeto", titulo: "Integração de sell-out", texto: "Cruza a campanha com a venda agregada por SKU, loja e data para avaliar impacto comercial com rigor.", decide: "Impacto real da campanha" },
+      { camada: "externa", icone: "camera", plano: "Projeto", titulo: "Visão computacional", texto: "Confere planograma e disponibilidade por imagem de produto e prateleira. Nunca reconhecimento facial.", decide: "Conformidade de execução" },
+      { camada: "externa", icone: "sensor", plano: "Projeto", titulo: "Temperatura", texto: "Para categorias refrigeradas e sensíveis, com histórico e alerta de desvio.", decide: "Segurança da categoria" },
     ],
     rotulos: { entra: "Entra no plano", decide: "Decide" },
   },
@@ -219,6 +247,15 @@ export const pt: Conteudo = {
       texto: "1 cota = 1 semana de 1 display, vendida para a marca a R$ 1.500 na referência do plano.",
       meses: "Mês",
     },
+    grafico: {
+      titulo: "Custo acumulado por display, em 12 meses",
+      serieComprar: "Comprar sozinho",
+      serieAssinar: "Assinar a Códice",
+      virada: "Daqui em diante a compra acumula menos",
+      nota:
+        "Comprar custa R$ 3.620 no primeiro mês, mais cerca de R$ 70 por mês de manutenção. A assinatura custa R$ 499 por mês com manutenção, troca de comunicação, plataforma e evolução de tecnologia inclusas. Perto do oitavo mês o desembolso acumulado da compra fica menor, e o que continua do lado da rede é caixa livre, risco do equipamento fora do balanço e serviço garantido.",
+      mes: "M",
+    },
     fiscal: {
       titulo: "Na assinatura, o gasto vira despesa que reduz imposto",
       lead: "Escolha o regime da sua rede e veja o custo efetivo da mensalidade.",
@@ -237,12 +274,12 @@ export const pt: Conteudo = {
     titulo: "Display próprio custa caro e ninguém mantém. Com a Códice, a marca compra só a semana.",
     lead: "A mesma estrutura que gera receita para a rede resolve seis dores antigas de quem investe em ponto de venda.",
     linhas: [
-      { dor: "Display caro", dorTexto: "Produzido por campanha e descartado depois", solucao: "Compra só a semana", solucaoTexto: "Cota semanal com a comunicação inclusa" },
-      { dor: "Sem manutenção", dorTexto: "Quebrado, sujo e fora do padrão da marca", solucao: "Manutenção programada", solucaoTexto: "A Códice mantém o ponto sempre em ordem" },
-      { dor: "Logística loja a loja", dorTexto: "Produzir, enviar e montar em cada PDV", solucao: "Display já instalado", solucaoTexto: "A marca envia só a arte" },
-      { dor: "Espaço negociado caso a caso", dorTexto: "Sem tabela, sem calendário, sem padrão", solucao: "Agenda com tabela", solucaoTexto: "Reserva por semana, posição e loja" },
-      { dor: "Sem prova de execução", dorTexto: "Não sabe se montaram nem onde ficou", solucao: "Prova com foto e QR", solucaoTexto: "Evidência de instalação por loja" },
-      { dor: "Sem dado de resultado", dorTexto: "Investe sem medir o retorno", solucao: "Sensores e relatório", solucaoTexto: "Fluxo e veiculação por campanha" },
+      { icone: "dinheiro", dor: "Display caro", dorTexto: "Produzido por campanha e descartado depois", solucao: "Compra só a semana", solucaoTexto: "Cota semanal com a comunicação inclusa" },
+      { icone: "ferramenta", dor: "Sem manutenção", dorTexto: "Quebrado, sujo e fora do padrão da marca", solucao: "Manutenção programada", solucaoTexto: "A Códice mantém o ponto sempre em ordem" },
+      { icone: "caminhao", dor: "Logística loja a loja", dorTexto: "Produzir, enviar e montar em cada PDV", solucao: "Display já instalado", solucaoTexto: "A marca envia só a arte" },
+      { icone: "calendario", dor: "Espaço negociado caso a caso", dorTexto: "Sem tabela, sem calendário, sem padrão", solucao: "Agenda com tabela", solucaoTexto: "Reserva por semana, posição e loja" },
+      { icone: "camera", dor: "Sem prova de execução", dorTexto: "Não sabe se montaram nem onde ficou", solucao: "Prova com foto e QR", solucaoTexto: "Evidência de instalação por loja" },
+      { icone: "grafico", dor: "Sem dado de resultado", dorTexto: "Investe sem medir o retorno", solucao: "Sensores e relatório", solucaoTexto: "Fluxo e veiculação por campanha" },
     ],
     etapas: {
       proprio: { titulo: "Display próprio: 5 etapas por conta da marca", itens: ["Projeto", "Produção", "Frete", "Montagem", "Manutenção"] },
@@ -278,6 +315,7 @@ export const pt: Conteudo = {
     empresas: [
       {
         nome: "NeoBand",
+        icone: "fabrica",
         papel: "A fábrica",
         texto: "Fabrica cada display da Códice, com quatro décadas de mobiliário de ponto de venda.",
         numeros: [
@@ -289,6 +327,7 @@ export const pt: Conteudo = {
       },
       {
         nome: "75 LAB",
+        icone: "grafico",
         papel: "Trade e tecnologia",
         texto: "Desenha a experiência na loja, constrói a plataforma e mede o resultado no ponto de venda.",
         numeros: [
@@ -299,6 +338,7 @@ export const pt: Conteudo = {
         ],
       },
     ],
+    marcas: "Marcas que as empresas do grupo já atendem",
     ressalva: "Os números acima são das empresas do grupo. A Códice é a operação nova que une as duas.",
   },
   honestidade: {

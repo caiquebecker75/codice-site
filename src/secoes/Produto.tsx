@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Revelar, TituloCortina } from "../componentes/Base";
 import { Visor3D } from "../componentes/Visor3D";
+import { Icone, IconeCaixa } from "../componentes/Icones";
 import { partirTitulo, real } from "./Mercado";
 import type { Conteudo } from "../conteudo/tipos";
 
@@ -133,11 +134,11 @@ export function Pacotes({ c }: { c: Conteudo }) {
 
                     <ul className="mt-6 grid gap-3">
                       {item.recursos.map((recurso) => (
-                        <li key={recurso} className={`flex gap-3 text-[15px] ${destaque ? "text-white/80" : "text-tinta-2"}`}>
-                          <svg viewBox="0 0 24 24" className={`mt-1 h-4 w-4 shrink-0 ${destaque ? "text-teal" : "text-azul"}`} fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                            <path d="M5 13l4 4 10-10" />
-                          </svg>
-                          {recurso}
+                        <li key={recurso.texto} className={`flex items-center gap-3 text-[15px] ${destaque ? "text-white/80" : "text-tinta-2"}`}>
+                          <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-lg ${destaque ? "bg-white/10 text-teal" : "bg-papel-2 text-azul"}`}>
+                            <Icone nome={recurso.icone} className="h-[17px] w-[17px]" />
+                          </span>
+                          {recurso.texto}
                         </li>
                       ))}
                     </ul>
@@ -189,10 +190,17 @@ export function Tecnologia({ c }: { c: Conteudo }) {
                       ativo ? "bg-teal text-navy" : "bg-white/5 text-white hover:bg-white/10"
                     }`}
                   >
-                    <span className={`block text-[10.5px] font-bold uppercase tracking-[.12em] ${ativo ? "text-navy/60" : interna ? "text-teal" : "text-white/35"}`}>
-                      {interna ? c.tecnologia.camadas.interna : c.tecnologia.camadas.externa} · {item.plano}
+                    <span className="flex items-start gap-3">
+                      <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-xl ${ativo ? "bg-navy/10 text-navy" : interna ? "bg-teal/15 text-teal" : "bg-white/10 text-white/60"}`}>
+                        <Icone nome={item.icone} className="h-[19px] w-[19px]" />
+                      </span>
+                      <span>
+                        <span className={`block text-[10.5px] font-bold uppercase tracking-[.12em] ${ativo ? "text-navy/60" : interna ? "text-teal" : "text-white/35"}`}>
+                          {interna ? c.tecnologia.camadas.interna : c.tecnologia.camadas.externa} · {item.plano}
+                        </span>
+                        <span className="mt-1 block font-display text-[15.5px] font-bold leading-tight">{item.titulo}</span>
+                      </span>
                     </span>
-                    <span className="mt-1.5 block font-display text-[15.5px] font-bold leading-tight">{item.titulo}</span>
                   </button>
                 );
               })}
@@ -200,7 +208,8 @@ export function Tecnologia({ c }: { c: Conteudo }) {
           </div>
 
           <div key={modulo.titulo} className="flex animate-[montar_.45s_ease-out_both] flex-col rounded-[28px] bg-white p-8 text-tinta sm:p-10">
-            <span className="text-[11.5px] font-bold uppercase tracking-[.14em] text-azul">
+            <IconeCaixa nome={modulo.icone} tom="azul" className="h-12 w-12" />
+            <span className="mt-5 text-[11.5px] font-bold uppercase tracking-[.14em] text-azul">
               {modulo.camada === "interna" ? c.tecnologia.camadas.interna : c.tecnologia.camadas.externa}
             </span>
             <h3 className="mt-3 font-display text-[26px] font-extrabold leading-tight">{modulo.titulo}</h3>

@@ -7,6 +7,8 @@
    e a conta da rede são os mesmos do deck.
    ===================================================================== */
 
+import type { NomeIcone } from "../componentes/Icones";
+
 export interface Selo { valor: string; rotulo: string }
 
 export interface Conteudo {
@@ -29,7 +31,16 @@ export interface Conteudo {
     selos: Selo[];
     rolar: string;
     legendaFoto: string;
+    provas: { icone: NomeIcone; texto: string }[];
   };
+  entrega: {
+    chapeu: string;
+    titulo: string;
+    lead: string;
+    itens: { icone: NomeIcone; titulo: string; texto: string }[];
+    fecho: string;
+  };
+  ctas: { id: string; icone: NomeIcone; titulo: string; texto: string; botao: string }[];
   mudou: {
     chapeu: string;
     titulo: string;
@@ -52,7 +63,7 @@ export interface Conteudo {
     chapeu: string;
     titulo: string;
     lead: string;
-    passos: { n: string; titulo: string; texto: string; foto: string; alt: string }[];
+    passos: { n: string; icone: NomeIcone; titulo: string; texto: string; foto: string; alt: string }[];
     destaque: { valor: string; rotulo: string; nota: string };
     regra: string;
   };
@@ -81,7 +92,7 @@ export interface Conteudo {
     titulo: string;
     lead: string;
     porMes: string;
-    itens: { id: string; nome: string; preco: number; selo: string; quem: string; recursos: string[] }[];
+    itens: { id: string; nome: string; preco: number; selo: string; quem: string; recursos: { icone: NomeIcone; texto: string }[] }[];
     nota: string;
   };
   tecnologia: {
@@ -90,7 +101,7 @@ export interface Conteudo {
     lead: string;
     instrucao: string;
     camadas: { interna: string; externa: string };
-    modulos: { camada: "interna" | "externa"; plano: string; titulo: string; texto: string; decide: string }[];
+    modulos: { camada: "interna" | "externa"; icone: NomeIcone; plano: string; titulo: string; texto: string; decide: string }[];
     rotulos: { entra: string; decide: string };
   };
   contas: {
@@ -112,6 +123,14 @@ export interface Conteudo {
       linhas: string[];
     };
     cota: { titulo: string; texto: string; meses: string };
+    grafico: {
+      titulo: string;
+      serieComprar: string;
+      serieAssinar: string;
+      virada: string;
+      nota: string;
+      mes: string;
+    };
     fiscal: {
       titulo: string;
       lead: string;
@@ -124,7 +143,7 @@ export interface Conteudo {
     chapeu: string;
     titulo: string;
     lead: string;
-    linhas: { dor: string; dorTexto: string; solucao: string; solucaoTexto: string }[];
+    linhas: { icone: NomeIcone; dor: string; dorTexto: string; solucao: string; solucaoTexto: string }[];
     etapas: { proprio: { titulo: string; itens: string[] }; codice: { titulo: string; itens: string[] } };
   };
   simulador: {
@@ -142,7 +161,8 @@ export interface Conteudo {
     chapeu: string;
     titulo: string;
     lead: string;
-    empresas: { nome: string; papel: string; texto: string; numeros: { valor: string; rotulo: string }[] }[];
+    empresas: { nome: string; icone: NomeIcone; papel: string; texto: string; numeros: { valor: string; rotulo: string }[] }[];
+    marcas: string;
     ressalva: string;
   };
   honestidade: {

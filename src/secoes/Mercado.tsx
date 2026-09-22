@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { Contador, Revelar, TituloCortina } from "../componentes/Base";
+import { Icone, IconeCaixa } from "../componentes/Icones";
 import { useAoEntrar } from "../hooks/uso";
 import type { Conteudo } from "../conteudo/tipos";
 
@@ -211,7 +212,8 @@ export function ComoFunciona({ c }: { c: Conteudo }) {
                       aria-hidden="true"
                       style={{ background: "linear-gradient(180deg, rgba(6,27,73,.10) 0%, rgba(6,27,73,.86) 82%)" }}
                     />
-                    <span className="absolute left-6 top-6 grid h-11 w-11 place-items-center rounded-full bg-teal font-display text-[15px] font-extrabold text-navy">
+                    <span className="absolute left-6 top-6 flex items-center gap-2 rounded-full bg-teal px-4 py-2.5 font-display text-[14px] font-extrabold text-navy">
+                      <Icone nome={passo.icone} className="h-[18px] w-[18px]" />
                       {passo.n}
                     </span>
                   </div>
@@ -236,6 +238,48 @@ export function ComoFunciona({ c }: { c: Conteudo }) {
             <p className="max-w-[34ch] text-[15px] leading-snug text-navy/75">{c.comoFunciona.destaque.nota}</p>
             <p className="rounded-full bg-navy px-5 py-3 text-[13.5px] font-bold text-teal">{c.comoFunciona.regra}</p>
           </div>
+        </Revelar>
+      </div>
+    </section>
+  );
+}
+
+
+/* ------------------------------------------------ o que entregamos --- */
+
+export function Entrega({ c }: { c: Conteudo }) {
+  return (
+    <section id="entrega" className="secao bg-papel">
+      <div className="env">
+        <div className="grid gap-10 lg:grid-cols-[.52fr_.48fr] lg:items-end">
+          <div>
+            <p className="chapeu">{c.entrega.chapeu}</p>
+            <TituloCortina className="titulo-secao mt-6" linhas={partirTitulo(c.entrega.titulo)} />
+          </div>
+          <p className="lead">{c.entrega.lead}</p>
+        </div>
+
+        <ul className="mt-14 grid gap-px overflow-hidden rounded-[28px] bg-tinta/8 sm:grid-cols-2 lg:grid-cols-3">
+          {c.entrega.itens.map((item, i) => (
+            <Revelar key={item.titulo} como="li" atraso={(i % 3) * 80} className="bg-papel">
+              <article className="group flex h-full flex-col gap-4 bg-white p-8 transition-colors duration-300 hover:bg-navy">
+                <IconeCaixa nome={item.icone} tom="claro" className="transition-colors duration-300 group-hover:bg-teal group-hover:text-navy" />
+                <h3 className="font-display text-[18.5px] font-bold text-tinta transition-colors duration-300 group-hover:text-white">
+                  {item.titulo}
+                </h3>
+                <p className="text-[14.5px] leading-relaxed text-tinta-2 transition-colors duration-300 group-hover:text-white/65">
+                  {item.texto}
+                </p>
+              </article>
+            </Revelar>
+          ))}
+        </ul>
+
+        <Revelar>
+          <p className="mt-7 inline-flex items-center gap-3 rounded-full bg-navy px-6 py-4 font-display text-[16.5px] font-bold text-white">
+            <Icone nome="check" className="h-5 w-5 text-teal" />
+            {c.entrega.fecho}
+          </p>
         </Revelar>
       </div>
     </section>

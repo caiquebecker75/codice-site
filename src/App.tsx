@@ -1,7 +1,8 @@
 import { Cabecalho } from "./componentes/Cabecalho";
 import { Cursor } from "./componentes/Cursor";
 import { Abertura, Heroi } from "./secoes/Topo";
-import { ComoFunciona, Mudou } from "./secoes/Mercado";
+import { ComoFunciona, Entrega, Mudou } from "./secoes/Mercado";
+import { BotaoFlutuante, FaixaCta } from "./componentes/Cta";
 import { Plataforma } from "./secoes/Plataforma";
 import { Displays, Pacotes, Tecnologia } from "./secoes/Produto";
 import { Contas, Industria } from "./secoes/Contas";
@@ -91,20 +92,25 @@ export function App({ idioma, pagina }: Props) {
       <main id="conteudo">
         <Heroi c={c} />
         <Mudou c={c} />
+        <Entrega c={c} />
         <ComoFunciona c={c} />
+        <FaixaCta c={c} indice={0} tom="teal" />
         <Plataforma c={c} />
         <Displays c={c} />
         <Pacotes c={c} />
+        <FaixaCta c={c} indice={1} tom="navy" />
         <Tecnologia c={c} />
         <Contas c={c} />
         <Industria c={c} />
         <Simulador c={c} />
+        <FaixaCta c={c} indice={2} tom="claro" />
         <Grupo c={c} />
         <Honestidade c={c} />
         <Faq c={c} />
         <Conversao c={c} />
       </main>
       <Rodape c={c} idioma={idioma} caminhoIdioma={paraIdioma} linkPrivacidade={endereco(idioma, "privacidade")} />
+      <BotaoFlutuante c={c} />
     </>
   );
 }

@@ -2,6 +2,7 @@ import { useId, useState } from "react";
 import { Acordeao, BotaoMagnetico, Revelar, TituloCortina } from "../componentes/Base";
 import { partirTitulo } from "./Mercado";
 import { Logotipo, Hexagono } from "../componentes/Marca";
+import { Icone, IconeCaixa } from "../componentes/Icones";
 import { CONTATO, IDIOMAS, SITE, type Idioma } from "../conteudo/config";
 import type { Conteudo } from "../conteudo/tipos";
 
@@ -91,10 +92,12 @@ export function Conversao({ c }: { c: Conteudo }) {
                 </p>
                 <div className="mt-4 flex flex-wrap gap-3">
                   <a href={`mailto:${CONTATO.email}`} className="botao botao-vazado">
+                    <Icone nome="email" className="h-[18px] w-[18px]" />
                     {c.conversao.alternativaEmail}
                   </a>
                   {CONTATO.whatsapp && (
-                    <a href={CONTATO.whatsapp} target="_blank" rel="noopener noreferrer" className="botao botao-vazado">
+                    <a href={CONTATO.whatsapp} target="_blank" rel="noopener noreferrer" className="botao botao-teal">
+                      <Icone nome="whatsapp" className="h-[18px] w-[18px]" />
                       {c.conversao.alternativaWhatsapp}
                     </a>
                   )}
@@ -312,7 +315,8 @@ export function Rodape({
           <h2 className="mb-4 text-[12px] font-bold uppercase tracking-[.16em] text-white/35">{c.rodape.contato}</h2>
           <ul className="grid gap-2.5 text-[15px]">
             <li>
-              <a className="transition-colors hover:text-teal" href={`mailto:${CONTATO.email}`}>
+              <a className="inline-flex items-center gap-2.5 transition-colors hover:text-teal" href={`mailto:${CONTATO.email}`}>
+                <Icone nome="email" className="h-4 w-4" />
                 {CONTATO.email}
               </a>
             </li>
@@ -328,7 +332,8 @@ export function Rodape({
             </li>
             {CONTATO.whatsapp && (
               <li>
-                <a className="transition-colors hover:text-teal" href={CONTATO.whatsapp} target="_blank" rel="noopener noreferrer">
+                <a className="inline-flex items-center gap-2.5 transition-colors hover:text-teal" href={CONTATO.whatsapp} target="_blank" rel="noopener noreferrer">
+                  <Icone nome="whatsapp" className="h-4 w-4" />
                   {CONTATO.telefone}
                 </a>
               </li>
@@ -399,6 +404,7 @@ export function Grupo({ c }: { c: Conteudo }) {
           {c.grupo.empresas.map((empresa, i) => (
             <Revelar key={empresa.nome} atraso={i * 110}>
               <article className="cartao flex h-full flex-col p-8 sm:p-10">
+                <IconeCaixa nome={empresa.icone} tom="navy" className="mb-6 h-12 w-12" />
                 <p className="text-[11.5px] font-bold uppercase tracking-[.16em] text-azul">{empresa.papel}</p>
                 <h3 className="mt-3 font-display text-[28px] font-extrabold text-tinta">{empresa.nome}</h3>
                 <p className="mt-4 max-w-[42ch] text-[15.5px] leading-relaxed text-tinta-2">{empresa.texto}</p>
@@ -415,6 +421,25 @@ export function Grupo({ c }: { c: Conteudo }) {
             </Revelar>
           ))}
         </div>
+        {/* marcas do grupo, com o crédito correto: são delas, não da Códice */}
+        <div className="mt-10 rounded-[26px] bg-navy p-8 shadow-[var(--shadow-suave)]">
+          <p className="text-center text-[11.5px] font-bold uppercase tracking-[.16em] text-white/40">{c.grupo.marcas}</p>
+          <ul className="mt-7 flex flex-wrap items-center justify-center gap-x-12 gap-y-7">
+            {["allianz", "bradesco", "claro", "gpa", "vivo"].map((marca) => (
+              <li key={marca}>
+                <img
+                  src={`/marcas/cli-${marca}.png`}
+                  alt={marca}
+                  height={28}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-7 w-auto opacity-55 transition-opacity duration-300 hover:opacity-100 sm:h-8"
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+
         <p className="mt-6 text-[13px] text-tinta-3">{c.grupo.ressalva}</p>
       </div>
     </section>

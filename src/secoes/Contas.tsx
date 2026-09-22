@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Revelar, TituloCortina } from "../componentes/Base";
+import { GraficoLinhas } from "../componentes/Grafico";
+import { Icone, IconeCaixa } from "../componentes/Icones";
 import { partirTitulo, real } from "./Mercado";
 import { useAoEntrar } from "../hooks/uso";
 import type { Conteudo } from "../conteudo/tipos";
@@ -14,6 +16,12 @@ export function Contas({ c }: { c: Conteudo }) {
   const [regime, setRegime] = useState(1);
   const escolhido = c.contas.fiscal.regimes[regime];
   const maior = Math.max(...c.contas.fiscal.regimes.map((r) => r.custo));
+
+  /* desembolso acumulado por display, mês a mês, nas duas rotas */
+  const MANUTENCAO = 70;
+  const curvaComprar = Array.from({ length: 12 }, (_, i) => c.contas.comprar.valor + MANUTENCAO * i);
+  const curvaAssinar = Array.from({ length: 12 }, (_, i) => c.contas.assinar.valor * (i + 1));
+  const virada = curvaAssinar.findIndex((v, i) => v > curvaComprar[i]);
 
   return (
     <section id="contas" className="secao bg-papel">
@@ -50,7 +58,9 @@ export function Contas({ c }: { c: Conteudo }) {
           </article>
 
           <div className="grid place-items-center">
-            <span className="grid h-14 w-14 place-items-center rounded-full bg-navy font-display text-[15px] font-extrabold text-teal">VS</span>
+            <span className="grid h-14 w-14 place-items-center rounded-full bg-navy font-display text-[15px] font-extrabold text-teal">
+              <Icone nome="balanca" className="h-6 w-6" />
+            </span>
           </div>
 
           <article className="relative flex flex-col overflow-hidden rounded-[26px] bg-navy p-8 text-white shadow-[var(--shadow-alta)]">
@@ -93,6 +103,38 @@ export function Contas({ c }: { c: Conteudo }) {
           </article>
         </div>
 
+        {/* a comparação virando curva: é onde a conta fica tangível */}
+        <div className="mt-6 grid gap-8 rounded-[26px] bg-white p-8 shadow-[var(--shadow-suave)] sm:p-10 lg:grid-cols-[.58fr_.42fr] lg:items-center">
+          <div>
+            <h3 className="font-display text-[20px] font-extrabold text-tinta">{c.contas.grafico.titulo}</h3>
+            <div className="mt-6">
+              <GraficoLinhas
+                titulo={c.contas.grafico.titulo}
+                rotulos={Array.from({ length: 12 }, (_, i) => `${c.contas.grafico.mes}${i + 1}`)}
+                formatar={real}
+                cruzamento={virada}
+                rotuloCruzamento={c.contas.grafico.virada}
+                series={[
+                  { nome: c.contas.grafico.serieComprar, cor: "#6C7A95", valores: curvaComprar, tracejada: true },
+                  { nome: c.contas.grafico.serieAssinar, cor: "#2F73FF", valores: curvaAssinar, area: true },
+                ]}
+              />
+            </div>
+          </div>
+
+          <div className="grid gap-4">
+            <p className="text-[14.5px] leading-relaxed text-tinta-2">{c.contas.grafico.nota}</p>
+            <ul className="grid gap-2.5">
+              {c.contas.assinar.linhas.map((linha) => (
+                <li key={linha} className="flex items-center gap-3 rounded-xl bg-papel px-4 py-3 text-[14.5px] text-tinta">
+                  <Icone nome="check" className="h-4 w-4 shrink-0 text-azul" />
+                  {linha}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
         {/* uma cota paga três meses */}
         <Revelar>
           <div className="mt-6 grid gap-6 rounded-[26px] bg-papel-2 p-8 sm:p-10 lg:grid-cols-[.42fr_.58fr] lg:items-center">
@@ -123,6 +165,7 @@ export function Contas({ c }: { c: Conteudo }) {
         {/* efeito fiscal */}
         <div className="mt-6 grid gap-6 rounded-[26px] bg-navy p-8 text-white sm:p-10 lg:grid-cols-[.44fr_.56fr] lg:items-center">
           <div>
+            <IconeCaixa nome="dinheiro" tom="teal" className="mb-5 h-12 w-12" />
             <h3 className="font-display text-[22px] font-extrabold">{c.contas.fiscal.titulo}</h3>
             <p className="mt-3 text-[15px] leading-relaxed text-white/65">{c.contas.fiscal.lead}</p>
 
@@ -190,9 +233,9 @@ export function Industria({ c }: { c: Conteudo }) {
             <Revelar key={linha.dor} como="li" atraso={i * 60}>
               <div className="grid items-center gap-3 rounded-[22px] bg-white p-5 shadow-[var(--shadow-suave)] sm:grid-cols-[1fr_auto_1fr] sm:p-6">
                 <div className="flex gap-3">
-                  <svg viewBox="0 0 24 24" className="mt-1 h-4 w-4 shrink-0 text-[#C0392B]" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true">
-                    <path d="M7 7l10 10M17 7L7 17" />
-                  </svg>
+                  <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[#FBE9E7] text-[#C0392B]">
+                    <Icone nome={linha.icone} className="h-[17px] w-[17px]" />
+                  </span>
                   <p>
                     <b className="block font-display text-[16px] font-bold text-tinta">{linha.dor}</b>
                     <span className="mt-1 block text-[14px] leading-snug text-tinta-3">{linha.dorTexto}</span>
@@ -204,9 +247,9 @@ export function Industria({ c }: { c: Conteudo }) {
                   </svg>
                 </span>
                 <div className="flex gap-3 rounded-2xl bg-papel p-4 sm:p-5">
-                  <svg viewBox="0 0 24 24" className="mt-1 h-4 w-4 shrink-0 text-azul" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M5 13l4 4 10-10" />
-                  </svg>
+                  <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-azul text-white">
+                    <Icone nome="check" className="h-[17px] w-[17px]" />
+                  </span>
                   <p>
                     <b className="block font-display text-[16px] font-bold text-navy">{linha.solucao}</b>
                     <span className="mt-1 block text-[14px] leading-snug text-tinta-2">{linha.solucaoTexto}</span>

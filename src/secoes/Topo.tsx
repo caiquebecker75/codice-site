@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Simbolo } from "../componentes/Marca";
 import { BotaoMagnetico } from "../componentes/Base";
+import { Icone } from "../componentes/Icones";
 import { useMenosMovimento, useParallax } from "../hooks/uso";
 import type { Conteudo } from "../conteudo/tipos";
 
@@ -144,6 +145,20 @@ export function Heroi({ c }: { c: Conteudo }) {
           >
             {c.heroi.lead}
           </p>
+
+          <ul
+            className={`mt-8 grid gap-2.5 transition-all duration-700 ${montado ? "opacity-100" : "translate-y-4 opacity-0"}`}
+            style={{ transitionDelay: "560ms" }}
+          >
+            {c.heroi.provas.map((prova) => (
+              <li key={prova.texto} className="flex items-center gap-3 text-[15px] text-white/80">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-teal/15 text-teal">
+                  <Icone nome={prova.icone} className="h-[18px] w-[18px]" />
+                </span>
+                {prova.texto}
+              </li>
+            ))}
+          </ul>
 
           <div
             className={`mt-9 flex flex-wrap gap-3 transition-all duration-700 ${montado ? "opacity-100" : "translate-y-4 opacity-0"}`}

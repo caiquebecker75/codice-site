@@ -40,6 +40,11 @@ export const en: Conteudo = {
     ],
     rolar: "Scroll to understand",
     legendaFoto: "Códice display installed in a supermarket",
+    provas: [
+      { icone: "fabrica", texto: "Own factory, with 40 years of point of sale work" },
+      { icone: "ferramenta", texto: "Installation and maintenance inside the subscription" },
+      { icone: "grafico", texto: "Platform and measurement within the contract" },
+    ],
   },
   mudou: {
     chapeu: "What changed",
@@ -72,6 +77,26 @@ export const en: Conteudo = {
       nota: "1 slot = 1 week of 1 display. The figure already deducts R$ 499 per display per month.",
     },
   },
+  entrega: {
+    chapeu: "What we deliver",
+    titulo: "The chain gets a working media operation, not a rented piece of furniture.",
+    lead:
+      "Six deliverables in a single contract. That is what turns store space into recurring revenue without the chain building a factory, a maintenance crew or a media team.",
+    itens: [
+      { icone: "display", titulo: "The display in the store", texto: "Design, manufacturing and assembly at the agreed spot, with no entry cost for the chain." },
+      { icone: "ferramenta", titulo: "Scheduled maintenance", texto: "Preventive visits, repairs and part replacement included in the monthly fee." },
+      { icone: "calendario", titulo: "Swappable creative", texto: "Artwork changed every campaign, with the right brand in the right week." },
+      { icone: "grafico", titulo: "Management platform", texto: "Rate card, calendar, booking, campaign and reporting in one place, for the chain and for the brand." },
+      { icone: "sensor", titulo: "Measurement at the spot", texto: "Traffic sensor, connection alerts and proof of play, according to the package." },
+      { icone: "pessoas", titulo: "Commercial support", texto: "Sales material, suggested rate card and support in the conversation with brands." },
+    ],
+    fecho: "All of it fits in R$ 499 per display, per month.",
+  },
+  ctas: [
+    { id: "cta-rede", icone: "loja", titulo: "Want to see this running in your chain?", texto: "A forty minute conversation with your store count on the table.", botao: "Talk to Códice" },
+    { id: "cta-formato", icone: "display", titulo: "Which format fits your stores?", texto: "We build the recommendation by banner, by aisle and by category.", botao: "Ask for a recommendation" },
+    { id: "cta-proposta", icone: "dinheiro", titulo: "Take these numbers to your board.", texto: "We send the proposal with your chain's figures, ready to present.", botao: "I want the proposal" },
+  ],
   comoFunciona: {
     chapeu: "How it works",
     titulo: "Códice installs and maintains. Your chain sells the week.",
@@ -80,6 +105,7 @@ export const en: Conteudo = {
     passos: [
       {
         n: "01",
+        icone: "ferramenta",
         titulo: "Códice installs the display",
         texto: "Design, production, in store assembly and staff training. The chain spends no capital to begin.",
         foto: "/fotos/foto-instalacao.jpg",
@@ -87,6 +113,7 @@ export const en: Conteudo = {
       },
       {
         n: "02",
+        icone: "calendario",
         titulo: "The chain sells the week to brands",
         texto: "Brands buy the weekly slot with the creative included. Rate card, calendar and booking live in the platform.",
         foto: "/fotos/foto-ilha-supermercado.jpg",
@@ -94,6 +121,7 @@ export const en: Conteudo = {
       },
       {
         n: "03",
+        icone: "grafico",
         titulo: "Códice maintains and measures",
         texto: "Scheduled maintenance, creative swaps and a report with proof of execution so the brand buys again.",
         foto: "/fotos/foto-monitoramento.jpg",
@@ -146,9 +174,9 @@ export const en: Conteudo = {
       "The structure is the same. What changes is how much the display can measure and prove, and that changes how much the chain can charge per slot.",
     porMes: "per display, per month",
     itens: [
-      { id: "essencial", nome: "Essencial", preco: 499, selo: "Best to start", quem: "To start selling space right away, with low complexity.", recursos: ["Modular display", "Swappable creative", "Asset QR code", "Maintenance included"] },
-      { id: "sense", nome: "Sense", preco: 849, selo: "Most chosen", quem: "For higher traffic spots, with proof that the audience walked by.", recursos: ["Everything in Essencial", "Proximity sensor", "Connection alerts", "Execution dashboard"] },
-      { id: "media", nome: "Media", preco: 1290, selo: "Highest value per slot", quem: "For launches and premium campaigns, with video inside the store.", recursos: ["Everything in Sense", "Screen and player", "Remote content", "Proof of play"] },
+      { id: "essencial", nome: "Essencial", preco: 499, selo: "Best to start", quem: "To start selling space right away, with low complexity.", recursos: [{ icone: "display", texto: "Modular display" }, { icone: "calendario", texto: "Swappable creative" }, { icone: "qr", texto: "Asset QR code" }, { icone: "ferramenta", texto: "Maintenance included" }] },
+      { id: "sense", nome: "Sense", preco: 849, selo: "Most chosen", quem: "For higher traffic spots, with proof that the audience walked by.", recursos: [{ icone: "check", texto: "Everything in Essencial" }, { icone: "pessoas", texto: "Proximity sensor" }, { icone: "wifi", texto: "Connection alerts" }, { icone: "grafico", texto: "Execution dashboard" }] },
+      { id: "media", nome: "Media", preco: 1290, selo: "Highest value per slot", quem: "For launches and premium campaigns, with video inside the store.", recursos: [{ icone: "check", texto: "Everything in Sense" }, { icone: "tela", texto: "Screen and player" }, { icone: "calendario", texto: "Remote content" }, { icone: "escudo", texto: "Proof of play" }] },
     ],
     nota: "Prices per display per month, with installation, maintenance and platform included.",
   },
@@ -160,16 +188,16 @@ export const en: Conteudo = {
     instrucao: "Click a module to read",
     camadas: { interna: "Inner layer", externa: "Outer layer" },
     modulos: [
-      { camada: "interna", plano: "Essencial", titulo: "Asset and shopper QR", texto: "One code controls asset, store, campaign and team check in. The other takes the shopper to a coupon, a survey or the brand page.", decide: "Proof of installation and interest" },
-      { camada: "interna", plano: "Essencial", titulo: "Visit geolocation", texto: "Records the coordinate at team check in, with the accuracy reported by the device. The QR alone tracks nobody.", decide: "Proof of route and visit" },
-      { camada: "interna", plano: "Sense", titulo: "Proximity sensor", texto: "Measures passages in the display zone and approximate dwell. Used to price position, not to promise audience.", decide: "Slot price by position" },
-      { camada: "interna", plano: "Sense", titulo: "Connectivity and alerts", texto: "The display reports when it drops, when the campaign changes and when something needs a technician.", decide: "Uptime and maintenance route" },
-      { camada: "interna", plano: "Media", titulo: "Screen and remote content", texto: "Playlist by day, store and category, changed with no site visit, logging file, time and failures.", decide: "Premium sales and proof of play" },
-      { camada: "interna", plano: "Media", titulo: "Smart lighting", texto: "LED that highlights the spot with low consumption and reports its own working state.", decide: "Standout and asset health" },
-      { camada: "externa", plano: "Project", titulo: "Weight sensing shelf", texto: "Weight variation indicates pick up, restock and possible out of stock. A pick up is not a confirmed sale.", decide: "Out of stock and restock" },
-      { camada: "externa", plano: "Project", titulo: "Sell out integration", texto: "Crosses the campaign with aggregated sales by SKU, store and date to assess commercial impact rigorously.", decide: "Real campaign impact" },
-      { camada: "externa", plano: "Project", titulo: "Computer vision", texto: "Checks planogram and availability from product and shelf images. Never facial recognition.", decide: "Execution compliance" },
-      { camada: "externa", plano: "Project", titulo: "Temperature", texto: "For chilled and sensitive categories, with history and deviation alerts.", decide: "Category safety" },
+      { camada: "interna", icone: "qr", plano: "Essencial", titulo: "Asset and shopper QR", texto: "One code controls asset, store, campaign and team check in. The other takes the shopper to a coupon, a survey or the brand page.", decide: "Proof of installation and interest" },
+      { camada: "interna", icone: "mapa", plano: "Essencial", titulo: "Visit geolocation", texto: "Records the coordinate at team check in, with the accuracy reported by the device. The QR alone tracks nobody.", decide: "Proof of route and visit" },
+      { camada: "interna", icone: "pessoas", plano: "Sense", titulo: "Proximity sensor", texto: "Measures passages in the display zone and approximate dwell. Used to price position, not to promise audience.", decide: "Slot price by position" },
+      { camada: "interna", icone: "wifi", plano: "Sense", titulo: "Connectivity and alerts", texto: "The display reports when it drops, when the campaign changes and when something needs a technician.", decide: "Uptime and maintenance route" },
+      { camada: "interna", icone: "tela", plano: "Media", titulo: "Screen and remote content", texto: "Playlist by day, store and category, changed with no site visit, logging file, time and failures.", decide: "Premium sales and proof of play" },
+      { camada: "interna", icone: "luz", plano: "Media", titulo: "Smart lighting", texto: "LED that highlights the spot with low consumption and reports its own working state.", decide: "Standout and asset health" },
+      { camada: "externa", icone: "balanca", plano: "Project", titulo: "Weight sensing shelf", texto: "Weight variation indicates pick up, restock and possible out of stock. A pick up is not a confirmed sale.", decide: "Out of stock and restock" },
+      { camada: "externa", icone: "dinheiro", plano: "Project", titulo: "Sell out integration", texto: "Crosses the campaign with aggregated sales by SKU, store and date to assess commercial impact rigorously.", decide: "Real campaign impact" },
+      { camada: "externa", icone: "camera", plano: "Project", titulo: "Computer vision", texto: "Checks planogram and availability from product and shelf images. Never facial recognition.", decide: "Execution compliance" },
+      { camada: "externa", icone: "sensor", plano: "Project", titulo: "Temperature", texto: "For chilled and sensitive categories, with history and deviation alerts.", decide: "Category safety" },
     ],
     rotulos: { entra: "Included in", decide: "Drives" },
   },
@@ -196,6 +224,15 @@ export const en: Conteudo = {
       texto: "1 slot = 1 week of 1 display, sold to the brand at R$ 1,500 in the plan reference.",
       meses: "Month",
     },
+    grafico: {
+      titulo: "Accumulated cost per display, over 12 months",
+      serieComprar: "Buying on your own",
+      serieAssinar: "Subscribing to Códice",
+      virada: "From here on buying accumulates less",
+      nota:
+        "Buying costs R$ 3,620 in the first month, plus around R$ 70 a month in maintenance. The subscription costs R$ 499 a month with maintenance, creative swaps, platform and technology upgrades included. Around month eight the accumulated outlay of buying becomes smaller, and what stays on the chain's side is free cash, equipment risk off the balance sheet and guaranteed service.",
+      mes: "M",
+    },
     fiscal: {
       titulo: "As a subscription, the spend becomes an expense that lowers tax",
       lead: "Pick your chain's tax regime and see the effective cost of the monthly fee.",
@@ -214,12 +251,12 @@ export const en: Conteudo = {
     titulo: "An owned display costs a lot and nobody maintains it. With Códice, the brand buys only the week.",
     lead: "The same structure that generates revenue for the chain solves six old pains for whoever invests at the point of sale.",
     linhas: [
-      { dor: "Expensive display", dorTexto: "Produced per campaign and discarded afterwards", solucao: "Buy only the week", solucaoTexto: "Weekly slot with the creative included" },
-      { dor: "No maintenance", dorTexto: "Broken, dirty and off brand standard", solucao: "Scheduled maintenance", solucaoTexto: "Códice keeps the spot in order" },
-      { dor: "Store by store logistics", dorTexto: "Produce, ship and assemble at every store", solucao: "Display already installed", solucaoTexto: "The brand only sends the artwork" },
-      { dor: "Space negotiated case by case", dorTexto: "No rate card, no calendar, no standard", solucao: "Calendar with a rate card", solucaoTexto: "Booking by week, position and store" },
-      { dor: "No proof of execution", dorTexto: "No idea whether it was assembled or where it ended up", solucao: "Proof with photo and QR", solucaoTexto: "Evidence of installation per store" },
-      { dor: "No result data", dorTexto: "Investing without measuring the return", solucao: "Sensors and reporting", solucaoTexto: "Traffic and play per campaign" },
+      { icone: "dinheiro", dor: "Expensive display", dorTexto: "Produced per campaign and discarded afterwards", solucao: "Buy only the week", solucaoTexto: "Weekly slot with the creative included" },
+      { icone: "ferramenta", dor: "No maintenance", dorTexto: "Broken, dirty and off brand standard", solucao: "Scheduled maintenance", solucaoTexto: "Códice keeps the spot in order" },
+      { icone: "caminhao", dor: "Store by store logistics", dorTexto: "Produce, ship and assemble at every store", solucao: "Display already installed", solucaoTexto: "The brand only sends the artwork" },
+      { icone: "calendario", dor: "Space negotiated case by case", dorTexto: "No rate card, no calendar, no standard", solucao: "Calendar with a rate card", solucaoTexto: "Booking by week, position and store" },
+      { icone: "camera", dor: "No proof of execution", dorTexto: "No idea whether it was assembled or where it ended up", solucao: "Proof with photo and QR", solucaoTexto: "Evidence of installation per store" },
+      { icone: "grafico", dor: "No result data", dorTexto: "Investing without measuring the return", solucao: "Sensors and reporting", solucaoTexto: "Traffic and play per campaign" },
     ],
     etapas: {
       proprio: { titulo: "Owned display: 5 stages on the brand", itens: ["Design", "Production", "Freight", "Assembly", "Maintenance"] },
@@ -248,6 +285,7 @@ export const en: Conteudo = {
     empresas: [
       {
         nome: "NeoBand",
+        icone: "fabrica",
         papel: "The factory",
         texto: "Manufactures every Códice display, with four decades of point of sale furniture.",
         numeros: [
@@ -259,6 +297,7 @@ export const en: Conteudo = {
       },
       {
         nome: "75 LAB",
+        icone: "grafico",
         papel: "Trade and technology",
         texto: "Designs the in store experience, builds the platform and measures the result at the point of sale.",
         numeros: [
@@ -269,6 +308,7 @@ export const en: Conteudo = {
         ],
       },
     ],
+    marcas: "Brands the group companies already serve",
     ressalva: "The figures above belong to the group companies. Códice is the new operation that joins the two.",
   },
   honestidade: {
