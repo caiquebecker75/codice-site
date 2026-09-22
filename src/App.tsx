@@ -1,14 +1,11 @@
 import { Cabecalho } from "./componentes/Cabecalho";
 import { Cursor } from "./componentes/Cursor";
-import { Abertura, Heroi } from "./secoes/Topo";
-import { ComoFunciona, Entrega, Mudou } from "./secoes/Mercado";
-import { BotaoFlutuante, FaixaCta } from "./componentes/Cta";
+import { Heroi, Prova } from "./secoes/Topo";
+import { BotaoFlutuante, Chamada, Como, Entrega, Numeros } from "./secoes/Home";
 import { Plataforma } from "./secoes/Plataforma";
-import { Displays, Pacotes, Tecnologia } from "./secoes/Produto";
-import { Contas, Industria } from "./secoes/Contas";
-import { Simulador } from "./secoes/Simulador";
-import { Conversao, Faq, Grupo, Honestidade, Rodape } from "./secoes/Fim";
-import { Hexagono } from "./componentes/Marca";
+import { Displays, Planos } from "./secoes/Produto";
+import { Conta } from "./secoes/Conta";
+import { Conversao, Faq, Rodape } from "./secoes/Fim";
 import { CONTEUDOS } from "./conteudo";
 import type { Idioma } from "./conteudo/config";
 
@@ -31,33 +28,34 @@ export function App({ idioma, pagina }: Props) {
   const c = CONTEUDOS[idioma];
   const paraIdioma = (destino: Idioma) => endereco(destino, pagina === "erro" ? "home" : pagina);
   const inicio = pagina === "home" ? "#topo" : endereco(idioma, "home");
+  const ancora = pagina === "home" ? "" : endereco(idioma, "home");
 
   if (pagina === "privacidade") {
     return (
       <>
         <Cursor />
-        <Cabecalho c={c} idioma={idioma} caminhoIdioma={paraIdioma} inicio={inicio} solido ancora={endereco(idioma, "home")} />
-        <main id="conteudo" className="bg-papel pt-[132px]">
+        <Cabecalho c={c} idioma={idioma} caminhoIdioma={paraIdioma} inicio={inicio} ancora={ancora} />
+        <main id="conteudo" className="bg-white pt-[110px]">
           <div className="env secao !pt-4">
-            <p className="chapeu">{c.rodape.legal}</p>
-            <h1 className="titulo-menor mt-6 max-w-[18ch]">{c.privacidade.titulo}</h1>
-            <p className="mt-4 text-[14px] text-tinta-3">{c.privacidade.atualizado}</p>
+            <p className="chapeu">{c.rodape.privacidade}</p>
+            <h1 className="titulo-menor mt-4 max-w-[18ch] text-navy">{c.privacidade.titulo}</h1>
+            <p className="mt-3 text-[14px] text-tinta-3">{c.privacidade.atualizado}</p>
 
-            <div className="mt-12 grid max-w-3xl gap-9">
+            <div className="mt-10 grid max-w-3xl gap-8">
               {c.privacidade.blocos.map((bloco) => (
                 <section key={bloco.titulo}>
-                  <h2 className="font-display text-[21px] font-bold text-tinta">{bloco.titulo}</h2>
-                  <p className="mt-3 text-[16px] leading-relaxed text-tinta-2">{bloco.texto}</p>
+                  <h2 className="font-display text-[20px] font-bold text-navy">{bloco.titulo}</h2>
+                  <p className="mt-2.5 text-[16px] leading-relaxed text-tinta-2">{bloco.texto}</p>
                 </section>
               ))}
             </div>
 
-            <a href={endereco(idioma, "home")} className="botao botao-tinta mt-12">
+            <a href={endereco(idioma, "home")} className="botao botao-tinta mt-10">
               {c.privacidade.voltar}
             </a>
           </div>
         </main>
-        <Rodape c={c} idioma={idioma} caminhoIdioma={paraIdioma} linkPrivacidade={endereco(idioma, "privacidade")} inicio={inicio} ancora={endereco(idioma, "home")} />
+        <Rodape c={c} idioma={idioma} caminhoIdioma={paraIdioma} linkPrivacidade={endereco(idioma, "privacidade")} inicio={inicio} ancora={ancora} />
       </>
     );
   }
@@ -66,13 +64,12 @@ export function App({ idioma, pagina }: Props) {
     return (
       <>
         <Cursor />
-        <main className="escuro grao relative grid min-h-screen place-items-center overflow-hidden">
-          <Hexagono className="pointer-events-none absolute -right-20 top-10 h-[420px] w-[420px] text-white/8" />
-          <div className="env relative text-center">
-            <p className="font-display text-[clamp(90px,18vw,190px)] font-extrabold leading-none text-teal">404</p>
-            <h1 className="titulo-menor mt-6">{c.erro404.titulo}</h1>
-            <p className="lead mx-auto mt-5 max-w-[46ch]">{c.erro404.texto}</p>
-            <a href={endereco(idioma, "home")} className="botao botao-teal mt-10">
+        <main className="grid min-h-screen place-items-center bg-white">
+          <div className="env text-center">
+            <p className="font-display text-[clamp(80px,16vw,170px)] font-extrabold leading-none text-papel-2">404</p>
+            <h1 className="titulo-menor mt-4 text-navy">{c.erro404.titulo}</h1>
+            <p className="lead mx-auto mt-4 max-w-[44ch]">{c.erro404.texto}</p>
+            <a href={endereco(idioma, "home")} className="botao mt-8">
               {c.erro404.voltar}
             </a>
           </div>
@@ -86,26 +83,19 @@ export function App({ idioma, pagina }: Props) {
       <a href="#conteudo" className="pular-para">
         {c.nav.irParaConteudo}
       </a>
-      <Abertura c={c} />
       <Cursor />
       <Cabecalho c={c} idioma={idioma} caminhoIdioma={paraIdioma} />
       <main id="conteudo">
         <Heroi c={c} />
-        <Mudou c={c} />
+        <Prova c={c} />
+        <Como c={c} />
         <Entrega c={c} />
-        <ComoFunciona c={c} />
-        <FaixaCta c={c} indice={0} tom="teal" />
+        <Chamada c={c} titulo={c.conta.titulo} tom="navy" />
         <Plataforma c={c} />
         <Displays c={c} />
-        <Pacotes c={c} />
-        <FaixaCta c={c} indice={1} tom="navy" />
-        <Tecnologia c={c} />
-        <Contas c={c} />
-        <Industria c={c} />
-        <Simulador c={c} />
-        <FaixaCta c={c} indice={2} tom="claro" />
-        <Grupo c={c} />
-        <Honestidade c={c} />
+        <Planos c={c} />
+        <Conta c={c} />
+        <Numeros c={c} />
         <Faq c={c} />
         <Conversao c={c} />
       </main>

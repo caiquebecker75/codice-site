@@ -6,10 +6,12 @@ tecnologia embarcada e a conta da rede são os mesmos do deck.
 
 Página única, mais política de privacidade e página 404, nos três idiomas.
 
-**Peças interativas:** calculadora do custo de não agir, galeria com as 7 telas reais
-do sistema (com ampliação em tela cheia), os 6 formatos de display em 3D, os 10 módulos
-de tecnologia, o comparador de comprar contra assinar, o seletor de regime tributário e
-o simulador da rede com gráfico de lucro acumulado.
+**Referências de linguagem:** olist.com (antiga Vnda) e involves.com. Daí vêm o fundo
+claro, o texto curto (título mais uma frase por bloco), a faixa de credibilidade logo
+abaixo do herói, a tabela de planos e a chamada de contato sempre à vista.
+
+**Peças interativas:** galeria com as 7 telas reais do sistema, os 6 formatos de display
+em 3D, o gráfico de desembolso acumulado em 12 meses e o simulador da rede.
 
 - **No ar:** https://seashell-buffalo-304816.hostingersite.com
 - **Idiomas:** `/` (pt-BR), `/en/`, `/es/`

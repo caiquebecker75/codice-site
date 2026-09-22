@@ -1,8 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { TituloCortina } from "../componentes/Base";
-import { partirTitulo } from "./Mercado";
+import { Cabeca } from "./Home";
 import { useAoEntrar, useMenosMovimento } from "../hooks/uso";
-import { PLATAFORMA } from "../conteudo/config";
 import type { Conteudo } from "../conteudo/tipos";
 
 /* =====================================================================
@@ -54,13 +52,7 @@ export function Plataforma({ c }: { c: Conteudo }) {
   return (
     <section id="plataforma" className="escuro grao relative overflow-hidden">
       <div className="env secao">
-        <div className="grid gap-10 lg:grid-cols-[.5fr_.5fr] lg:items-end">
-          <div>
-            <p className="chapeu">{c.plataforma.chapeu}</p>
-            <TituloCortina className="titulo-secao mt-6" linhas={partirTitulo(c.plataforma.titulo)} />
-          </div>
-          <p className="lead">{c.plataforma.lead}</p>
-        </div>
+        <Cabeca chapeu={c.plataforma.chapeu} titulo={c.plataforma.titulo} lead={c.plataforma.lead} centro escuro />
 
         <div
           ref={alvo}
@@ -169,9 +161,6 @@ export function Plataforma({ c }: { c: Conteudo }) {
                 <button type="button" onClick={() => passar(1)} aria-label={c.plataforma.proxima} className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20">
                   <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6" /></svg>
                 </button>
-                <a href={PLATAFORMA} target="_blank" rel="noopener noreferrer" className="botao botao-vazado ml-2 !px-5 !py-3 text-[14px]">
-                  {c.plataforma.entrar}
-                </a>
               </div>
             </div>
           </div>

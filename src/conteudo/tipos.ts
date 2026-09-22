@@ -1,15 +1,12 @@
-/* =====================================================================
-   Forma do conteúdo. Os três idiomas obedecem a este contrato, então
-   uma seção nova aparece como erro de tipo nos arquivos que faltarem.
-
-   O conteúdo comercial vem da apresentação de venda da Códice
-   (repo neoband-retail-media): preços, formatos, pacotes, tecnologia
-   e a conta da rede são os mesmos do deck.
-   ===================================================================== */
-
 import type { NomeIcone } from "../componentes/Icones";
 
-export interface Selo { valor: string; rotulo: string }
+/* =====================================================================
+   Forma do conteúdo.
+
+   Regra de escrita deste site: título curto e UMA frase de apoio.
+   Se o texto não couber em uma linha de leitura, ele não entra aqui,
+   vai para a conversa com o vendedor.
+   ===================================================================== */
 
 export interface Conteudo {
   meta: { titulo: string; descricao: string; palavras: string; ogAlt: string };
@@ -21,51 +18,27 @@ export interface Conteudo {
     idioma: string;
     irParaConteudo: string;
   };
-  abertura: { palavra: string; pular: string };
   heroi: {
     chapeu: string;
-    titulo: [string, string, string];
+    titulo: [string, string];
     lead: string;
     ctaPrimario: string;
     ctaSecundario: string;
-    selos: Selo[];
-    rolar: string;
+    selos: { valor: string; rotulo: string }[];
     legendaFoto: string;
-    provas: { icone: NomeIcone; texto: string }[];
+  };
+  prova: { frase: string; marcas: string };
+  como: {
+    chapeu: string;
+    titulo: string;
+    passos: { n: string; icone: NomeIcone; titulo: string; texto: string; foto: string; alt: string }[];
+    regra: string;
   };
   entrega: {
     chapeu: string;
     titulo: string;
     lead: string;
     itens: { icone: NomeIcone; titulo: string; texto: string }[];
-    fecho: string;
-  };
-  ctas: { id: string; icone: NomeIcone; titulo: string; texto: string; botao: string }[];
-  mudou: {
-    chapeu: string;
-    titulo: string;
-    lead: string;
-    investimento: { valor: number; prefixo: string; sufixo: string; separador: string; rotulo: string; fonte: string };
-    crescimento: { valor: number; sufixo: string; rotulo: string };
-    canais: { nome: string; nota: string }[];
-    calculadora: {
-      titulo: string;
-      lojas: string;
-      displays: string;
-      cota: string;
-      ocupacao: string;
-      resultado: string;
-      porAno: string;
-      nota: string;
-    };
-  };
-  comoFunciona: {
-    chapeu: string;
-    titulo: string;
-    lead: string;
-    passos: { n: string; icone: NomeIcone; titulo: string; texto: string; foto: string; alt: string }[];
-    destaque: { valor: string; rotulo: string; nota: string };
-    regra: string;
   };
   plataforma: {
     chapeu: string;
@@ -77,122 +50,60 @@ export interface Conteudo {
     anterior: string;
     proxima: string;
     aviso: string;
-    entrar: string;
   };
   displays: {
     chapeu: string;
     titulo: string;
     lead: string;
     instrucao: string;
-    formatos: { id: string; rotulo: string; nome: string; texto: string; uso: string; medidas: string }[];
-    rotulos: { uso: string; medidas: string; ver3d: string };
+    formatos: { id: string; rotulo: string; nome: string; texto: string; medidas: string }[];
   };
-  pacotes: {
+  planos: {
     chapeu: string;
     titulo: string;
     lead: string;
     porMes: string;
     itens: { id: string; nome: string; preco: number; selo: string; quem: string; recursos: { icone: NomeIcone; texto: string }[] }[];
+    cta: string;
     nota: string;
   };
-  tecnologia: {
+  conta: {
     chapeu: string;
     titulo: string;
     lead: string;
-    instrucao: string;
-    camadas: { interna: string; externa: string };
-    modulos: { camada: "interna" | "externa"; icone: NomeIcone; plano: string; titulo: string; texto: string; decide: string }[];
-    rotulos: { entra: string; decide: string };
-  };
-  contas: {
-    chapeu: string;
-    titulo: string;
-    lead: string;
-    comprar: {
+    comprar: { titulo: string; valor: number; nota: string };
+    assinar: { titulo: string; valor: number; nota: string; selo: string };
+    grafico: { titulo: string; serieComprar: string; serieAssinar: string; virada: string; mes: string };
+    argumento: string[];
+    simulador: {
       titulo: string;
-      valor: number;
-      unidade: string;
-      linhas: string[];
-      contras: string[];
-    };
-    assinar: {
-      titulo: string;
-      valor: number;
-      unidade: string;
-      selo: string;
-      linhas: string[];
-    };
-    cota: { titulo: string; texto: string; meses: string };
-    grafico: {
-      titulo: string;
-      serieComprar: string;
-      serieAssinar: string;
-      virada: string;
+      campos: { lojas: string; displays: string; cota: string; ocupacao: string };
+      saidas: { receita: string; aluguel: string; lucro: string };
+      periodo: string;
       nota: string;
-      mes: string;
-    };
-    fiscal: {
-      titulo: string;
-      lead: string;
-      regimes: { nome: string; nota: string; custo: number; volta: number }[];
-      rotulos: { custoEfetivo: string; volta: string; semEfeito: string };
-      ressalva: string;
+      cta: string;
     };
   };
-  industria: {
-    chapeu: string;
-    titulo: string;
-    lead: string;
-    linhas: { icone: NomeIcone; dor: string; dorTexto: string; solucao: string; solucaoTexto: string }[];
-    etapas: { proprio: { titulo: string; itens: string[] }; codice: { titulo: string; itens: string[] } };
-  };
-  simulador: {
-    chapeu: string;
-    titulo: string;
-    lead: string;
-    campos: { pacote: string; displays: string; lojas: string; cota: string; ocupacao: string; periodo: string };
-    periodos: { rotulo: string; meses: number }[];
-    saidas: { receita: string; aluguel: string; lucro: string };
-    grafico: string;
-    nota: string;
-    enviar: string;
-  };
-  grupo: {
-    chapeu: string;
-    titulo: string;
-    lead: string;
-    empresas: { nome: string; icone: NomeIcone; papel: string; texto: string; numeros: { valor: string; rotulo: string }[] }[];
-    marcas: string;
-    ressalva: string;
-  };
-  honestidade: {
-    chapeu: string;
-    titulo: string;
-    lead: string;
-    itens: { afirma: string; naoAfirma: string }[];
-  };
+  numeros: { itens: { valor: number; sufixo: string; rotulo: string }[]; nota: string };
   faq: { chapeu: string; titulo: string; itens: { pergunta: string; resposta: string }[] };
   conversao: {
     chapeu: string;
     titulo: string;
     lead: string;
     campos: { nome: string; empresa: string; email: string; lojas: string; mensagem: string };
-    ajuda: { nome: string; email: string; mensagem: string };
     enviar: string;
     enviando: string;
     sucesso: string;
     sucessoDetalhe: string;
     erro: string;
-    alternativaTitulo: string;
-    alternativaWhatsapp: string;
-    alternativaEmail: string;
+    whatsapp: string;
+    email: string;
     consentimento: string;
   };
   rodape: {
     frase: string;
     navegacao: string;
     contato: string;
-    legal: string;
     privacidade: string;
     creditos: string;
     direitos: string;
