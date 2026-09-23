@@ -30,12 +30,19 @@ export function Visor3D({
   className = "",
   instrucao,
   girar = true,
+  srcUrl,
+  posterUrl,
+  iosSrc,
 }: {
   modelo: string;
   alt: string;
   className?: string;
   instrucao?: string;
   girar?: boolean;
+  /** GLB/poster/usdz remotos (ex.: o Display Universal em AR); sem eles, usa /3d/{modelo}. */
+  srcUrl?: string;
+  posterUrl?: string;
+  iosSrc?: string;
 }) {
   const { alvo, dentro } = useAoEntrar<HTMLDivElement>("200px 0px 200px 0px");
   const [pronto, setPronto] = useState(false);
@@ -52,14 +59,16 @@ export function Visor3D({
     };
   }, [dentro]);
 
-  const poster = `/3d/${modelo}-poster.webp`;
+  const poster = posterUrl ?? `/3d/${modelo}-poster.webp`;
+  const src = srcUrl ?? `/3d/${modelo}.glb`;
 
   return (
     <div ref={alvo} className={`relative ${className}`}>
       {pronto && !falhou ? (
         createElement("model-viewer", {
-          src: `/3d/${modelo}.glb`,
+          src,
           poster,
+          "ios-src": iosSrc,
           alt,
           "camera-controls": true,
           // sem zoom por rolagem: o scroll continua sendo da página

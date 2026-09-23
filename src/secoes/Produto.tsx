@@ -15,59 +15,53 @@ export const real = (v: number) =>
 export function Displays({ c }: { c: Conteudo }) {
   const [atual, setAtual] = useState(0);
   const formato = c.displays.formatos[atual];
+  const AR = "https://projetos.75lab.com.br/ar/codice-display-universal/";
 
   return (
     <section id="displays" className="secao bg-white">
       <div className="env">
         <Cabeca chapeu={c.displays.chapeu} titulo={c.displays.titulo} lead={c.displays.lead} centro />
 
-        <div className="mt-10 flex flex-wrap justify-center gap-2" role="tablist" aria-label={c.displays.chapeu}>
-          {c.displays.formatos.map((item, i) => (
-            <button
-              key={item.id}
-              role="tab"
-              aria-selected={atual === i}
-              tabIndex={atual === i ? 0 : -1}
-              onKeyDown={(e) => {
-                if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
-                  e.preventDefault();
-                  setAtual((atual + (e.key === "ArrowRight" ? 1 : -1) + c.displays.formatos.length) % c.displays.formatos.length);
-                }
-              }}
-              onClick={() => setAtual(i)}
-              className={`rounded-full px-5 py-2.5 text-[14px] font-semibold transition-colors ${
-                atual === i ? "bg-navy text-white" : "bg-papel-2 text-tinta-2 hover:text-navy"
-              }`}
-            >
-              {item.rotulo}
-            </button>
-          ))}
-        </div>
-
-        <div className="mt-8 grid items-center gap-6 rounded-[28px] border border-tinta/8 bg-papel p-6 sm:p-8 lg:grid-cols-[.58fr_.42fr]">
-          <div className="aspect-[4/3.2] w-full overflow-hidden rounded-2xl bg-white">
-            <iframe
+        <div className="mt-10 grid items-stretch gap-6 rounded-[28px] border border-tinta/8 bg-papel p-6 sm:p-8 lg:grid-cols-[.56fr_.44fr]">
+          <div className="rounded-2xl bg-white">
+            <Visor3D
               key={formato.id}
-              src={formato.ar}
-              title={`${formato.nome}, display da Códice em 3D e realidade aumentada`}
-              className="h-full w-full border-0"
-              loading="lazy"
-              allow="xr-spatial-tracking; accelerometer; gyroscope; magnetometer; fullscreen"
+              modelo={formato.id}
+              srcUrl={`${AR}${formato.id}.glb`}
+              posterUrl={`${AR}${formato.id}-poster.webp`}
+              iosSrc={`${AR}${formato.id}.usdz`}
+              alt={`${formato.nome}, display da Códice em 3D`}
+              className="aspect-[4/3.4] w-full"
+              instrucao={c.displays.instrucao}
             />
           </div>
 
-          <div key={formato.id}>
-            <h3 className="font-display text-[clamp(24px,2.6vw,32px)] font-extrabold text-navy">{formato.nome}</h3>
-            <p className="mt-3 text-[16px] leading-relaxed text-tinta-2">{formato.texto}</p>
-            <p className="num mt-6 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-[14px] font-semibold text-navy">
-              <Icone nome="display" className="h-4 w-4 text-azul" />
-              {formato.medidas}
-            </p>
-            <a href={formato.ar} target="_blank" rel="noopener"
-              className="botao botao-teal mt-6 inline-flex w-full items-center justify-center gap-2 sm:w-auto">
-              <Icone nome="display" className="h-4 w-4" />
-              {c.displays.verAr}
-            </a>
+          <div className="flex flex-col">
+            <div role="tablist" aria-label={c.displays.chapeu} className="flex flex-col gap-2">
+              {c.displays.formatos.map((item, i) => (
+                <button
+                  key={item.id}
+                  role="tab"
+                  aria-selected={atual === i}
+                  onClick={() => setAtual(i)}
+                  className={`flex items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-left transition-colors ${
+                    atual === i ? "border-navy bg-navy text-white" : "border-tinta/10 bg-white text-tinta-2 hover:border-navy/40"
+                  }`}
+                >
+                  <span className="font-semibold">{item.rotulo}</span>
+                  <span className={`num text-[12px] ${atual === i ? "text-white/70" : "text-tinta-3"}`}>{item.medidas}</span>
+                </button>
+              ))}
+            </div>
+            <div className="mt-5 border-t border-tinta/8 pt-5">
+              <h3 className="font-display text-[clamp(22px,2.2vw,28px)] font-extrabold text-navy">{formato.nome}</h3>
+              <p className="mt-2 text-[15px] leading-relaxed text-tinta-2">{formato.texto}</p>
+              <a href={formato.ar} target="_blank" rel="noopener"
+                className="botao botao-teal mt-5 inline-flex w-full items-center justify-center gap-2">
+                <Icone nome="display" className="h-4 w-4" />
+                {c.displays.verAr}
+              </a>
+            </div>
           </div>
         </div>
 
