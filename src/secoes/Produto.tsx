@@ -45,13 +45,16 @@ export function Displays({ c }: { c: Conteudo }) {
         </div>
 
         <div className="mt-8 grid items-center gap-6 rounded-[28px] border border-tinta/8 bg-papel p-6 sm:p-8 lg:grid-cols-[.58fr_.42fr]">
-          <Visor3D
-            key={formato.id}
-            modelo={formato.id}
-            alt={`${formato.nome}, display da Códice em três dimensões`}
-            className="aspect-[4/3.2] w-full"
-            instrucao={c.displays.instrucao}
-          />
+          <div className="aspect-[4/3.2] w-full overflow-hidden rounded-2xl bg-white">
+            <iframe
+              key={formato.id}
+              src={formato.ar}
+              title={`${formato.nome}, display da Códice em 3D e realidade aumentada`}
+              className="h-full w-full border-0"
+              loading="lazy"
+              allow="xr-spatial-tracking; accelerometer; gyroscope; magnetometer; fullscreen"
+            />
+          </div>
 
           <div key={formato.id}>
             <h3 className="font-display text-[clamp(24px,2.6vw,32px)] font-extrabold text-navy">{formato.nome}</h3>
@@ -60,6 +63,37 @@ export function Displays({ c }: { c: Conteudo }) {
               <Icone nome="display" className="h-4 w-4 text-azul" />
               {formato.medidas}
             </p>
+            <a href={formato.ar} target="_blank" rel="noopener"
+              className="botao botao-teal mt-6 inline-flex w-full items-center justify-center gap-2 sm:w-auto">
+              <Icone nome="display" className="h-4 w-4" />
+              {c.displays.verAr}
+            </a>
+          </div>
+        </div>
+
+        <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_.42fr]">
+          <div>
+            <h3 className="font-display text-[20px] font-extrabold text-navy">{c.displays.acessoriosTitulo}</h3>
+            <div className="mt-4 grid gap-4 sm:grid-cols-3">
+              {c.displays.acessorios.map((a) => (
+                <div key={a.nome} className="rounded-2xl border border-tinta/8 bg-papel p-5">
+                  <div className="font-semibold text-navy">{a.nome}</div>
+                  <p className="mt-1 text-[14px] leading-relaxed text-tinta-2">{a.texto}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3 className="font-display text-[20px] font-extrabold text-navy">{c.displays.marcasTitulo}</h3>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {c.displays.marcas.map((m) => (
+                <a key={m.nome} href={m.ar} target="_blank" rel="noopener"
+                  className="inline-flex items-center gap-2 rounded-full border border-tinta/12 bg-white px-4 py-2 text-[14px] font-semibold text-navy transition-colors hover:text-azul">
+                  {m.nome}
+                  <span className="num text-[11px] font-bold text-azul">AR</span>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

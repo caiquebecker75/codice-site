@@ -56,7 +56,12 @@ export interface Conteudo {
     titulo: string;
     lead: string;
     instrucao: string;
-    formatos: { id: string; rotulo: string; nome: string; texto: string; medidas: string }[];
+    verAr: string;
+    formatos: { id: string; rotulo: string; nome: string; texto: string; medidas: string; ar: string }[];
+    acessoriosTitulo: string;
+    acessorios: { nome: string; texto: string }[];
+    marcasTitulo: string;
+    marcas: { nome: string; ar: string }[];
   };
   planos: {
     chapeu: string;
