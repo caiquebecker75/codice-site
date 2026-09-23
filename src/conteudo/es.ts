@@ -95,6 +95,7 @@ export const es: Conteudo = {
       { id: "ilha-frentes", rotulo: "2 frentes", nome: "Isla 2 frentes", texto: "Isla en dos grandes frentes de marca.", medidas: "170 × 112 × 112 cm", ar: "https://projetos.75lab.com.br/ar/codice-display-universal/?modelo=ilha-frentes" },
       { id: "baixa", rotulo: "Baja", nome: "Isla baja", texto: "90 cm de alto: no tapa la vista de la tienda.", medidas: "90 × 112 × 110 cm", ar: "https://projetos.75lab.com.br/ar/codice-display-universal/?modelo=baixa" },
       { id: "baixa-aereo", rotulo: "Baja + aéreo", nome: "Isla baja con aéreo", texto: "Isla baja con cabecera aérea, vista de lejos.", medidas: "118 × 112 × 110 cm", ar: "https://projetos.75lab.com.br/ar/codice-display-universal/?modelo=baixa-aereo" },
+      { id: "baixa-torre", rotulo: "Baja + torre", nome: "Isla baja con torre central", texto: "Isla baja con una torre central elevada, destaque en el medio de la isla.", medidas: "118 × 112 × 110 cm", ar: "https://projetos.75lab.com.br/ar/codice-display-universal/?modelo=baixa-torre" },
     ],
     acessoriosTitulo: "Accesorios",
     acessorios: [
