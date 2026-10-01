@@ -5,7 +5,7 @@ export const es: Conteudo = {
   meta: {
     titulo: "Códice · Convierte el espacio de tu tienda en ingreso",
     descricao:
-      "Códice alquila displays inteligentes por R$ 499 al mes. Tu cadena vende la semana de exposición a las marcas, con display, mantenimiento y plataforma incluidos.",
+      "Códice alquila displays inteligentes por R$ 499 al mes. Tu cadena vende el mes de exposición a las marcas, con display, mantenimiento y plataforma incluidos.",
     palavras: "retail media, display de punto de venta, alquiler de display, trade marketing",
     ogAlt: "Display Códice instalado en un supermercado",
   },
@@ -26,7 +26,7 @@ export const es: Conteudo = {
   heroi: {
     chapeu: "Retail media para cadenas",
     titulo: ["Convierte el espacio de tu tienda en", "ingreso todos los meses"],
-    lead: "Códice instala y mantiene el display. Tu cadena vende la semana de exposición a las marcas.",
+    lead: "Códice instala y mantiene el display. Tu cadena vende el mes de exposición a las marcas.",
     ctaPrimario: "Hablar con un especialista",
     ctaSecundario: "Simular mi cadena",
     selos: [
@@ -45,10 +45,10 @@ export const es: Conteudo = {
     titulo: "Tres pasos, un solo contrato",
     passos: [
       { n: "01", icone: "ferramenta", titulo: "Nosotros instalamos", texto: "Proyecto, producción y montaje en tienda, sin costo de entrada.", foto: "/fotos/foto-instalacao.jpg", alt: "Equipo técnico instalando el display en la tienda" },
-      { n: "02", icone: "calendario", titulo: "Tu cadena vende", texto: "La marca compra la semana con la comunicación incluida.", foto: "/fotos/foto-ilha-supermercado.jpg", alt: "Display Códice con la campaña de una marca en un supermercado" },
+      { n: "02", icone: "calendario", titulo: "Tu cadena vende", texto: "La marca compra el mes con la comunicación incluida.", foto: "/fotos/foto-ilha-supermercado.jpg", alt: "Display Códice con la campaña de una marca en un supermercado" },
       { n: "03", icone: "grafico", titulo: "Nosotros mantenemos y medimos", texto: "Mantenimiento, cambio de arte e informe con prueba de ejecución.", foto: "/fotos/foto-monitoramento.jpg", alt: "Central de monitoreo siguiendo la operación" },
     ],
-    regra: "1 cupo = 1 semana de 1 display",
+    regra: "1 cupo = 1 mes de 1 display",
   },
   entrega: {
     chapeu: "Qué incluye",
@@ -68,8 +68,8 @@ export const es: Conteudo = {
     titulo: "Tu operación de medios en una pantalla",
     lead: "Agenda, campañas, flota y resultado en el mismo lugar.",
     telas: [
-      { arquivo: "sis-painel", nome: "Panel", texto: "Ocupación, ingreso y plazos de la semana." },
-      { arquivo: "sis-inventario", nome: "Inventario", texto: "Cada display se vuelve cupos semanales." },
+      { arquivo: "sis-painel", nome: "Panel", texto: "Ocupación, ingreso y plazos del mes." },
+      { arquivo: "sis-inventario", nome: "Inventario", texto: "Cada display se vuelve cupos mensuales." },
       { arquivo: "sis-campanhas", nome: "Campañas", texto: "De la reserva a la salida al aire." },
       { arquivo: "sis-sensores", nome: "Sensores", texto: "Flujo medido tienda por tienda." },
       { arquivo: "sis-mapa", nome: "Mapa de la flota", texto: "Cada display en el mapa." },
@@ -170,7 +170,7 @@ export const es: Conteudo = {
       campos: { lojas: "Tiendas", displays: "Displays por tienda", cota: "Precio del cupo", ocupacao: "Agenda vendida" },
       saidas: { receita: "Ingreso con cupos", aluguel: "Alquiler Códice", lucro: "Ganancia en 12 meses" },
       periodo: "Proyección de 12 meses",
-      nota: "Valores antes de impuestos. Mes promedio de 4,3 semanas.",
+      nota: "Valores antes de impuestos. 1 cupo = 1 mes de 1 display.",
       cta: "Enviar esta simulación",
     },
   },
@@ -192,7 +192,7 @@ export const es: Conteudo = {
       { pergunta: "¿El sensor identifica a las personas?", resposta: "No. El conteo es agregado, sin cámara de reconocimiento y sin identificar al shopper. El sistema informa paso y permanencia aproximada." },
       { pergunta: "¿Y si el display se rompe?", resposta: "Mantenimiento y reparación están en la mensualidad. El display avisa cuando pierde conexión y la incidencia se vuelve tarea con plazo." },
       { pergunta: "¿Se puede empezar con pocas tiendas?", resposta: "Sí. El contrato es por display, así que la cadena empieza por una plaza, mide el resultado y amplía después." },
-      { pergunta: "¿En cuánto tiempo se paga?", resposta: "Un cupo de R$ 1.500 cubre tres meses del plan Essencial. El simulador de arriba muestra la ganancia de tu cadena en doce meses." },
+      { pergunta: "¿En cuánto tiempo se paga?", resposta: "Un cupo de R$ 2.000 cubre cuatro meses del plan Essencial. El simulador de arriba muestra la ganancia de tu cadena en doce meses." },
     ],
   },
   conversao: {

@@ -11,13 +11,13 @@ import type { Conteudo } from "../conteudo/tipos";
    Quem chega aqui já entendeu o produto e quer saber se fecha a conta.
    ===================================================================== */
 
-const SEMANAS_MES = 52 / 12;
+const MESES_ANO = 12;
 const MANUTENCAO = 70;
 
 export function Conta({ c }: { c: Conteudo }) {
   const [lojas, setLojas] = useState(10);
   const [displays, setDisplays] = useState(4);
-  const [cota, setCota] = useState(1500);
+  const [cota, setCota] = useState(2000);
   const [ocupacao, setOcupacao] = useState(50);
 
   const curvaComprar = Array.from({ length: 12 }, (_, i) => c.conta.comprar.valor + MANUTENCAO * i);
@@ -26,7 +26,7 @@ export function Conta({ c }: { c: Conteudo }) {
 
   const conta = useMemo(() => {
     const frota = lojas * displays;
-    const receita = frota * SEMANAS_MES * (ocupacao / 100) * cota * 12;
+    const receita = frota * MESES_ANO * (ocupacao / 100) * cota;   // 1 cota = 1 mês de 1 display
     const aluguel = frota * c.conta.assinar.valor * 12;
     return { receita, aluguel, lucro: receita - aluguel };
   }, [lojas, displays, cota, ocupacao, c.conta.assinar.valor]);
@@ -105,7 +105,7 @@ export function Conta({ c }: { c: Conteudo }) {
               <div className="mt-7 grid gap-6">
                 <Deslizador rotulo={c.conta.simulador.campos.lojas} valor={lojas} min={1} max={120} passo={1} aoMudar={setLojas} />
                 <Deslizador rotulo={c.conta.simulador.campos.displays} valor={displays} min={1} max={12} passo={1} aoMudar={setDisplays} />
-                <Deslizador rotulo={c.conta.simulador.campos.cota} valor={cota} min={500} max={4000} passo={100} aoMudar={setCota} formatar={real} />
+                <Deslizador rotulo={c.conta.simulador.campos.cota} valor={cota} min={500} max={6000} passo={250} aoMudar={setCota} formatar={real} />
                 <Deslizador rotulo={c.conta.simulador.campos.ocupacao} valor={ocupacao} min={10} max={100} passo={5} aoMudar={setOcupacao} formatar={(v) => `${v}%`} />
               </div>
             </div>

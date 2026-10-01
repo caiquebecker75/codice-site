@@ -5,7 +5,7 @@ export const pt: Conteudo = {
   meta: {
     titulo: "Códice · Transforme o espaço da sua loja em receita",
     descricao:
-      "A Códice aluga displays inteligentes por R$ 499 ao mês. A sua rede vende a semana de exposição para as marcas, com display, manutenção e plataforma inclusos.",
+      "A Códice aluga displays inteligentes por R$ 499 ao mês. A sua rede vende o mês de exposição para as marcas, com display, manutenção e plataforma inclusos.",
     palavras: "retail media, display de PDV, aluguel de display, mídia de varejo, trade marketing",
     ogAlt: "Display Códice instalado em supermercado",
   },
@@ -26,7 +26,7 @@ export const pt: Conteudo = {
   heroi: {
     chapeu: "Retail media para o varejo",
     titulo: ["Transforme o espaço da sua loja em", "receita todo mês"],
-    lead: "A Códice instala e mantém o display. A sua rede vende a semana de exposição para as marcas.",
+    lead: "A Códice instala e mantém o display. A sua rede vende o mês de exposição para as marcas.",
     ctaPrimario: "Falar com um especialista",
     ctaSecundario: "Simular a minha rede",
     selos: [
@@ -56,7 +56,7 @@ export const pt: Conteudo = {
         n: "02",
         icone: "calendario",
         titulo: "A sua rede vende",
-        texto: "A marca compra a semana com a comunicação inclusa.",
+        texto: "A marca compra o mês com a comunicação inclusa.",
         foto: "/fotos/foto-ilha-supermercado.jpg",
         alt: "Display Códice com a campanha de uma marca em supermercado",
       },
@@ -69,7 +69,7 @@ export const pt: Conteudo = {
         alt: "Central de monitoramento acompanhando a operação",
       },
     ],
-    regra: "1 cota = 1 semana de 1 display",
+    regra: "1 cota = 1 mês de 1 display",
   },
   entrega: {
     chapeu: "O que está incluso",
@@ -89,8 +89,8 @@ export const pt: Conteudo = {
     titulo: "A sua operação de mídia em uma tela",
     lead: "Agenda, campanhas, frota e resultado no mesmo lugar.",
     telas: [
-      { arquivo: "sis-painel", nome: "Painel", texto: "Ocupação, receita e prazos da semana." },
-      { arquivo: "sis-inventario", nome: "Inventário", texto: "Cada display vira cotas semanais." },
+      { arquivo: "sis-painel", nome: "Painel", texto: "Ocupação, receita e prazos do mês." },
+      { arquivo: "sis-inventario", nome: "Inventário", texto: "Cada display vira cotas mensais." },
       { arquivo: "sis-campanhas", nome: "Campanhas", texto: "Da reserva à veiculação." },
       { arquivo: "sis-sensores", nome: "Sensores", texto: "Fluxo medido loja a loja." },
       { arquivo: "sis-mapa", nome: "Mapa da frota", texto: "Cada display no mapa." },
@@ -203,7 +203,7 @@ export const pt: Conteudo = {
       campos: { lojas: "Lojas", displays: "Displays por loja", cota: "Preço da cota", ocupacao: "Agenda vendida" },
       saidas: { receita: "Receita com cotas", aluguel: "Aluguel Códice", lucro: "Lucro em 12 meses" },
       periodo: "Projeção de 12 meses",
-      nota: "Valores antes de impostos. Mês médio de 4,3 semanas.",
+      nota: "Valores antes de impostos. 1 cota = 1 mês de 1 display.",
       cta: "Enviar esta simulação",
     },
   },
@@ -242,7 +242,7 @@ export const pt: Conteudo = {
       },
       {
         pergunta: "Em quanto tempo se paga?",
-        resposta: "Uma cota de R$ 1.500 cobre três meses do plano Essencial. O simulador acima mostra o lucro da sua rede em doze meses.",
+        resposta: "Uma cota de R$ 2.000 cobre quatro meses do plano Essencial. O simulador acima mostra o lucro da sua rede em doze meses.",
       },
     ],
   },

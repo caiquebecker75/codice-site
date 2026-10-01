@@ -5,7 +5,7 @@ export const en: Conteudo = {
   meta: {
     titulo: "Códice · Turn your store space into revenue",
     descricao:
-      "Códice rents smart displays for R$ 499 a month. Your chain sells the exposure week to brands, with display, maintenance and platform included.",
+      "Códice rents smart displays for R$ 499 a month. Your chain sells the exposure month to brands, with display, maintenance and platform included.",
     palavras: "retail media, in store display, display rental, shopper marketing, trade marketing",
     ogAlt: "Códice display installed in a supermarket",
   },
@@ -26,7 +26,7 @@ export const en: Conteudo = {
   heroi: {
     chapeu: "Retail media for store chains",
     titulo: ["Turn your store space into", "revenue every month"],
-    lead: "Códice installs and maintains the display. Your chain sells the exposure week to brands.",
+    lead: "Códice installs and maintains the display. Your chain sells the exposure month to brands.",
     ctaPrimario: "Talk to a specialist",
     ctaSecundario: "Simulate my chain",
     selos: [
@@ -45,10 +45,10 @@ export const en: Conteudo = {
     titulo: "Three steps, one contract",
     passos: [
       { n: "01", icone: "ferramenta", titulo: "We install", texto: "Design, production and in store assembly, with no entry cost.", foto: "/fotos/foto-instalacao.jpg", alt: "Technical team installing the display in the store" },
-      { n: "02", icone: "calendario", titulo: "Your chain sells", texto: "The brand buys the week with the creative included.", foto: "/fotos/foto-ilha-supermercado.jpg", alt: "Códice display carrying a brand campaign in a supermarket" },
+      { n: "02", icone: "calendario", titulo: "Your chain sells", texto: "The brand buys the month with the creative included.", foto: "/fotos/foto-ilha-supermercado.jpg", alt: "Códice display carrying a brand campaign in a supermarket" },
       { n: "03", icone: "grafico", titulo: "We maintain and measure", texto: "Maintenance, artwork swaps and reports with proof of execution.", foto: "/fotos/foto-monitoramento.jpg", alt: "Monitoring centre following the operation" },
     ],
-    regra: "1 slot = 1 week of 1 display",
+    regra: "1 slot = 1 month of 1 display",
   },
   entrega: {
     chapeu: "What is included",
@@ -68,8 +68,8 @@ export const en: Conteudo = {
     titulo: "Your media operation on one screen",
     lead: "Calendar, campaigns, fleet and results in the same place.",
     telas: [
-      { arquivo: "sis-painel", nome: "Dashboard", texto: "Occupancy, revenue and deadlines for the week." },
-      { arquivo: "sis-inventario", nome: "Inventory", texto: "Every display becomes weekly slots." },
+      { arquivo: "sis-painel", nome: "Dashboard", texto: "Occupancy, revenue and deadlines for the month." },
+      { arquivo: "sis-inventario", nome: "Inventory", texto: "Every display becomes monthly slots." },
       { arquivo: "sis-campanhas", nome: "Campaigns", texto: "From booking to going live." },
       { arquivo: "sis-sensores", nome: "Sensors", texto: "Traffic measured store by store." },
       { arquivo: "sis-mapa", nome: "Fleet map", texto: "Every display on the map." },
@@ -170,7 +170,7 @@ export const en: Conteudo = {
       campos: { lojas: "Stores", displays: "Displays per store", cota: "Slot price", ocupacao: "Calendar sold" },
       saidas: { receita: "Revenue from slots", aluguel: "Códice rent", lucro: "Profit over 12 months" },
       periodo: "12 month projection",
-      nota: "Figures before tax. Average month of 4.3 weeks.",
+      nota: "Figures before tax. 1 slot = 1 month of 1 display.",
       cta: "Send this simulation",
     },
   },
@@ -192,7 +192,7 @@ export const en: Conteudo = {
       { pergunta: "Does the sensor identify people?", resposta: "No. The count is aggregated, with no recognition camera and no shopper identification. The system reports passage and approximate dwell." },
       { pergunta: "What if the display breaks?", resposta: "Maintenance and repairs are in the monthly fee. The display reports lost connection and the incident becomes a task with a deadline." },
       { pergunta: "Can we start with a few stores?", resposta: "Yes. The contract is per display, so the chain starts in one region, measures the result and expands afterwards." },
-      { pergunta: "How long until it pays off?", resposta: "One slot at R$ 1,500 covers three months of the Essencial plan. The simulator above shows your chain's profit over twelve months." },
+      { pergunta: "How long until it pays off?", resposta: "One slot at R$ 2,000 covers four months of the Essencial plan. The simulator above shows your chain's profit over twelve months." },
     ],
   },
   conversao: {
