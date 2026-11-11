@@ -135,12 +135,12 @@ export const en: Conteudo = {
         ],
       },
       {
-        id: "media", nome: "Media", preco: 1290, selo: "Highest value per slot", quem: "Launches and campaigns with in store video.",
+        id: "media", nome: "Media", preco: 1290, selo: "Highest value per slot", quem: "Launches and premium campaigns, with new communication every campaign.",
         recursos: [
           { icone: "check", texto: "Everything in Sense" },
-          { icone: "tela", texto: "Screen and player" },
-          { icone: "calendario", texto: "Remote content" },
-          { icone: "escudo", texto: "Proof of play" },
+          { icone: "relogio", texto: "Communication swap included" },
+          { icone: "luz", texto: "Smart lighting" },
+          { icone: "camera", texto: "Photo proof of display" },
         ],
       },
     ],

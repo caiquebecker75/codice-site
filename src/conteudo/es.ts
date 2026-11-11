@@ -135,12 +135,12 @@ export const es: Conteudo = {
         ],
       },
       {
-        id: "media", nome: "Media", preco: 1290, selo: "Mayor valor por cupo", quem: "Lanzamientos y campañas con video en tienda.",
+        id: "media", nome: "Media", preco: 1290, selo: "Mayor valor por cupo", quem: "Lanzamientos y campañas premium, con comunicación nueva en cada campaña.",
         recursos: [
           { icone: "check", texto: "Todo lo del Sense" },
-          { icone: "tela", texto: "Pantalla y player" },
-          { icone: "calendario", texto: "Contenido remoto" },
-          { icone: "escudo", texto: "Prueba de emisión" },
+          { icone: "relogio", texto: "Cambio de comunicación incluido" },
+          { icone: "luz", texto: "Iluminación inteligente" },
+          { icone: "camera", texto: "Prueba de exhibición con foto" },
         ],
       },
     ],
